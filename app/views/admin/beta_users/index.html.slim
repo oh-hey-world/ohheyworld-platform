@@ -1,0 +1,19 @@
+h1 Listing beta_users
+
+table
+  tr
+    th Email
+    th
+    th
+    th
+
+  - @beta_users.each do |beta_user|
+    tr
+      td = beta_user.email
+      td = link_to 'Show', [:admin, beta_user]
+      td = link_to 'Edit', edit_admin_beta_user_path(beta_user)
+      td = link_to 'Destroy', [:admin, beta_user], :confirm => 'Are you sure?', :method => :delete
+
+br
+
+= link_to 'New Beta user', new_admin_beta_user_path

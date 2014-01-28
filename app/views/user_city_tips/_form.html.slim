@@ -1,0 +1,22 @@
+= form_for @user_city_tip do |f|
+  - if @user_city_tip.errors.any?
+    #error_explanation
+      h2 = "#{pluralize(@user_city_tip.errors.count, "error")} prohibited this user_city_tip from being saved:"
+      ul
+        - @user_city_tip.errors.full_messages.each do |message|
+          li = message
+  .field
+    = f.label :user_city_id
+    = f.number_field :user_city_id
+  .field
+    = f.text_area :tip, class: "margin-bs input-text full-width", placeholder: "Enter a new city tip here…", rows: '10', maxLength: '255'
+  .field
+    = f.label :travel_profile
+    = f.select :travel_profile, options_for_select(UserCityTip::TRAVEL_PROFILE_TYPES.map{ |x| [x.humanize.titleize, x] }, @user_city_tip.travel_profile), {include_blank: "---"}, {class: ''}
+    = f.label :tags
+    = f.text_field :tag_list
+    = f.label :link_name
+    = f.text_field :link_name
+    = f.label :link_value
+    = f.text_field :link_value
+  .actions.text-center = f.submit 'Save', class: "btn btn--three btn--fixed"

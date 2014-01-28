@@ -1,0 +1,52 @@
+<div class="container container--padded container--push-footer">
+	<div class="m2-m6 t4-t6 d4-d6">
+
+	<p class="text-center gamma"><strong>Sign in</strong> or <strong>Sign up</strong></p>
+	<%= link_to "/users/auth/facebook", :class => "btn btn--facebook margin-bs full-width" do %>
+		<span aria-hidden="true" data-icon="&#xe006;">Facebook</span>
+	<% end %>
+	<div class="zeta text-center">(Highly recommended. We don't post without your permission.)</div>
+
+	<div class="text-line margin-bs">
+		<span>or</span>
+	</div>
+
+	<!--<%= link_to "/users/auth/facebook", :class => "btn btn--twitter margin-b full-width" do %>
+		<span aria-hidden="true" data-icon="&#xe007;">Twitter</span> 
+	<% end %>
+
+	<div class="text-line margin-bs">
+		<span>or</span>
+	</div>-->
+
+	<a class="btn btn--three margin-bs full-width js-button-open" href="#">Sign In without Facebook</a>
+	<div class="js-button-get-opened transition reveal-vert">
+		<%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
+		  <div class="margin-bs"><%= f.email_field :email, :class => "input-text full-width text-center", :placeholder => "Email" %></div>
+		
+		  <div class="margin-bs"><%= f.password_field :password, :class => "input-text full-width text-center", :placeholder => "Password" %></div>
+		
+		  <% if devise_mapping.rememberable? -%>
+		    <div class="margin-bs"><%= f.label :remember_me, "Remember Me", :class => "inline-block zeta" %><%= f.check_box :remember_me %></div>
+		  <% end -%>
+		
+		  <div><%= f.submit "Sign in", :class => "center btn btn--primary margin-b btn--fixed" %></div>
+		<% end %>
+	</div>
+
+	<div class="text-line margin-bs">
+		<span>or</span>
+	</div>
+
+	<%= link_to "Create non-Facebook Account", new_registration_path(resource_name), :class => "btn margin-b full-width" %>
+
+
+	<div class="zeta">
+		<p>By signing in, you agree to our <a href="/tos/">Terms of Service</a> and <a href="/privacy/">Privacy policy</a>.</p>
+		<p><%= render :partial => "devise/shared/links" %></p>
+	
+	</div>
+
+
+	</div>
+</div>

@@ -1,0 +1,10 @@
+header.clearfix
+  .nav-bar.nav-bar--alt.m-all.d-all
+    h1.visuallyhidden Oh Hey World
+    .m2.t2-t4.d2-d4
+      a href="/"
+        = image_tag "logo_no_slogan.png", class: "logo nav-bar-logo"
+    .m3-m6.t5-t8.d5-d8
+      ul.nav.nav.nav-bar--alt__nav.text-right
+        li = link_to('Sign In', new_user_session_path)
+  		

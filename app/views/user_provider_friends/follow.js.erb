@@ -1,0 +1,11 @@
+<%- people = @user_provider_friends%>
+var content = "<%= escape_javascript(render( partial: 'user_provider_friends/friends_follow_list', locals: {people: people} ))%>";
+var container = $("#js-follow-friends");
+container.append(content);
+<% if people.current_page == people.total_pages %>
+$("#js-more-friends-follow").hide();
+<% else %>
+var href = $("#js-more-friends-follow").attr('href');
+href = href.replace("page=<%= people.current_page%>", "page=<%= people.current_page + 1%>")
+$("#js-more-friends-follow").attr('href', href);
+<% end %>

@@ -1,0 +1,38 @@
+- if is_same_user? || list.count > 0 
+  span #{list_text}
+.zeta
+  ul.nav.profile-interests.js-profile-interests
+    - if list.count > 0
+      - list.each do |user_interest_tag|
+          li
+            = link_to user_interest_tag, users_tags_path(user_interest_tag), :class => "interest-link"
+    - elsif is_same_user?(user)
+      - if list_name == 'interests'
+        span What are some of your general interests? e.g. Cooking or Physics.
+      - elsif list_name == 'non_profits_and_causes'
+        span What non profits and causes are you involved with or passionate about? e.g. Kiva or Peace Corps.
+      - elsif list_name == 'extreme_experiences'
+        span Extreme travel experiences you’ve undertaken? e.g. Mount Kilimanjaro, Mongol Rally, or shark diving.
+      - elsif list_name == 'festivals'
+        span What festivals have you attended? e.g. Songkran, Oktoberfest, or Tomorrowland.
+      - elsif list_name == 'favorite_experiences'
+        span The best experiences you’ve ever had? e.g. Angkor Wat, Machu Picchu or Camino de Santiago.
+
+  - if is_same_user?(user)
+    .js-profile-interests-form.hidden
+      = form_for current_user, url: update_tags_user_path(current_user), html: {class: 'js-tags-form'} do |f|
+        - class_name = "input-text full-width margin-bs text-center"
+        - placeholder = "Enter your interests, separated with commas."
+        - if list_name == 'interests'
+          = f.text_field :interest_list, class: class_name, placeholder: placeholder
+        - elsif list_name == 'non_profits_and_causes'
+          = f.text_field :non_profits_and_cause_list, class: class_name, placeholder: placeholder
+        - elsif list_name == 'extreme_experiences'
+          = f.text_field :extreme_experience_list, class: class_name, placeholder: placeholder
+        - elsif list_name == 'festivals'
+          = f.text_field :festival_list, class: class_name, placeholder: placeholder
+        - elsif list_name == 'favorite_experiences'
+          = f.text_field :favorite_experience_list, class: class_name, placeholder: placeholder
+        = f.submit "Save", class: "btn btn--small btn--three margin-rs"
+      a.btn.btn--small.js-profile-interests-cancel Cancel
+    a.js-profile-interests-edit aria-hidden="true" data-icon="&#xe013;" class="btn btn--three btn--small" Edit

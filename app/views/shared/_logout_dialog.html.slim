@@ -1,0 +1,5 @@
+.modal.hide.fade.center-child id="logoutDialog" tabindex="-1" role="dialog" aria-hidden="true"
+  .modal-header
+    h3 Sign Out and Sign In with Facebook
+  .modal-body
+    = link_to content_tag(:strong, "Sign Out"), destroy_user_session_path, :method => :delete

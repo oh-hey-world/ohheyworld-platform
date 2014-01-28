@@ -1,0 +1,23 @@
+.how-it-works.container
+  .open-tab
+    a.how-it-works-controller href="#"
+      h3.display-font.brand.open-tab-title How It Works
+  - how_it_works_style = (user_signed_in?) ? "display:none" : ""
+  .row.how-it-works-target style="#{how_it_works_style}"
+    .ten.column.offset-by-one
+      p
+        | When you arrive in a new location, you probably e-mail or text your parents or spouse. You post a status update on 
+        strong Facebook
+        |. Heck, you may even broadcast your new location via 
+        strong Twitter
+        |.
+      p
+        | Wouldn&rsquo;t it be nice if you could do all that, PLUS track your travel history, with 
+        strong ONE CLICK
+        | ?
+    .four.column
+      = image_tag "xnotify.jpg.pagespeed.ic.hLdH3FGPPY.jpg"
+    .four.column
+      = image_tag "xtrack.jpg.pagespeed.ic.mjiVvck4zI.jpg"
+    .four.column
+      = image_tag "xdiscover.jpg.pagespeed.ic.2I22CEQZDx.jpg"

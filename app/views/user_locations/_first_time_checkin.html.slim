@@ -1,0 +1,56 @@
+.row
+  .eight.column.offset-by-two
+    = form_for current_user, url: update_user_user_location_path(@user_location) do |form|
+      = form.error_messages
+      h2.gamma Do you want to tell your parents you’ve arrived safely with an email or SMS?
+      .center-child
+        .fancy-checkbox.ib
+          = check_box_tag 'email_sms_parents',  1, true
+          i
+          label class="delta" for="email_sms_parents"
+            | Yes
+      .section.section-bl.clearfix 
+        #parents-form
+          p
+            | Enter phone numbers for SMS or e-mail address to notify.
+          p
+            = button_tag "+Add New", id: "add-new-parent", class: "btn btn-small"
+          #new-parent-entries.notify-form
+            = render partial: "user_contact", locals: { details: @mom_and_dad_notification_details, f: form, placeholder_name: nil, placeholder_value: nil }
+          = button_tag "Done", id: "done-with-parents", class: "btn btn-small align-left"
+      h2.gamma How about your significant other, close friends, and others?
+      .center-child
+        .fancy-checkbox.ib
+          = check_box_tag 'email_sms_friends',  1, false
+          i
+          label class="delta" for="email_sms_friends"
+            | Yes
+      .section.section-bl.clearfix 
+        
+        #friends-form.hide
+          p
+            | Enter phone numbers for SMS or e-mail address to notify.
+          p
+            = button_tag "+Add New", id: "add-new-friend", class: "btn btn-small"
+          #new-friends-entries.notify-form
+            = render partial: "user_contact", locals: { details: @friend_notification_details, f: form, placeholder_name: nil, placeholder_value: nil }
+          = button_tag "Done", id: "done-with-friends", class: "btn btn-small"
+
+      h2.gamma Do you want to tell your social media friends and followers about your arrival?
+      = form.fields_for :preferences do |preference|
+          .fancy-checkbox.ib
+            - facebook_settings_preference = (current_user.provider_valid?('facebook')) ? "" : "facebook-settings-preference"
+            = check_box_tag 'post_to_facebook', 1, current_user.provider('facebook'), {class: facebook_settings_preference}
+            i
+            label class="epsilon" for="post_to_facebook"
+              | Yes, post my arrival on my Facebook wall
+
+          .fancy-checkbox.ib
+            = check_box_tag 'post_to_twitter', 1, false, class: "twitter-settings-preference"
+            i
+            label class="epsilon" for="post_to_twitter"
+              | Yes, share my arrival with my Twitter followers
+      .section.section-bl
+        = form.submit "Complete my check in and share it!", class: "btn"
+
+

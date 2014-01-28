@@ -1,0 +1,9 @@
+<p>Welcome <%= @resource.email %>!</p>
+
+<p>You're so close to joining the Oh Hey World Community -- the easiest place to make meaningful connections every time you leave home and update your loved ones about your safe arrival.</p>
+
+<p>Click this link and we’ll send your confirmation flinging through the inter-webs asap:</p>
+
+<p><%= link_to 'Confirm my account', user_confirmation_url(confirmation_token: @resource.confirmation_token) %></p>
+
+<p>- Drew & The Team at Oh Hey World</p>

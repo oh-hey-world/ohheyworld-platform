@@ -1,0 +1,5 @@
+.alt.container
+  .row
+    .seven.column
+      - if @current_location
+        #{render( partial: 'user_locations/profile_section', locals: {people: @provider_friends, header_text: "Facebook Friends Living In #{@current_location.city_state_country}", footer_text: 'You do not have any friends that live in', page_param: 'page', show_no_results: true, can_show_friend_add: false} )}

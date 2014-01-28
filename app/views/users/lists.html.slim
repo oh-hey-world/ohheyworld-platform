@@ -1,0 +1,21 @@
+- @page_title = (params[:tag]) ? "People interested in params[:tag] - Oh Hey World" : "People you are following"
+.container.container--push-footer
+	- if !@user_friends || (@user_friends && @user_friends.count == 0)
+		a href="/user_provider_friends/follow"
+		  .ad-bar
+	    	strong Nobody here. 
+	    	span Find some friends to add 
+	    	span.zeta &#9654;	
+	.m2-m6.t3-t7.d3-d7
+		ul#js-ohw-friends-list
+		  = render partial: 'friends_list', locals: {friends: @user_friends}
+		- if @user_friends && @user_friends.total_pages > 1
+		  = link_to "See More", {controller: "users", action: "lists", friends_page: @user_friends.current_page + 1}, {remote: true, id: "js-more-ohw-friends", class: 'btn btn--full margin-b'}
+
+		/.go-away-for-now
+			h2.gamma.fb-friends Facebook Friends
+			ul#js-fb-friends-list
+			  = render partial: 'friends_list', locals: {friends: @user_provider_friends}
+			- if @user_provider_friends.total_pages > 1
+			  = link_to "See More", {controller: "users", action: "lists", provider_friends_page: @user_provider_friends.current_page + 1}, {remote: true, id: "js-more-provider-friends", class: 'btn btn--full margin-b'}
+

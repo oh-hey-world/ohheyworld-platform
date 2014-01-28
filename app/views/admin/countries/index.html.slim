@@ -1,0 +1,19 @@
+h1 Listing countries
+
+table
+  tr
+    th
+    th
+    th
+
+  - @admin_countries.each do |admin_country|
+    tr
+      td = admin_country.name
+      td = image_tag(admin_country.flag.url(:small))
+      td = link_to 'Show', [:admin, admin_country]
+      td = link_to 'Edit', edit_admin_country_path(admin_country)
+      td = link_to 'Destroy', [:admin, admin_country], :confirm => 'Are you sure?', :method => :delete
+
+br
+
+= link_to 'New Country', new_admin_country_path

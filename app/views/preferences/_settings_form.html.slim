@@ -1,0 +1,27 @@
+h1.gamma Default Notifications and Sharing
+p By default, every check in on Oh Hey World will adopt the following notification and sharing settings. On a check-in by check-in basis, you’ll be able to turn each on or off - these will just be filled in as defaults.
+.section
+  h2.epsilon
+    | Notification Defaults  
+  p NOTE: You can turn each of these on/off per individual check in from the check in screen.
+  .text-center
+    = f.fields_for :preferences do |preference|
+      label class="inline-block margin-r" for="user_preferences_facebook"
+        | Facebook
+        = preference.check_box current_user.facebook.name, checked_preference('facebook', current_user.facebook.value)
+        
+      - twitter_settings_preference = (current_user.provider_valid?('twitter')) ? "" : "twitter-settings-preference"
+      label class="inline-block margin-r" for="user_preferences_twitter"
+        | Twitter
+        = preference.check_box(current_user.twitter.name, { class: twitter_settings_preference }.merge(checked_preference('twitter', current_user.twitter.value)))
+          
+      label class="inline-block margin-r" for="user_preferences_sms_friends"
+        | SMS
+        = preference.check_box current_user.sms_friends.name, checked_preference('sms', current_user.sms_friends.value)
+
+      label class="inline-block" for="user_preferences_email_friends"
+        | Email
+        = preference.check_box current_user.email_friends.name, checked_preference('email', current_user.email_friends.value)
+
+            
+              

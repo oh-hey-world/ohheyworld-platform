@@ -1,0 +1,25 @@
+.alt.privacy.container
+  .row
+    .eight.column.offset-by-two
+      h1 Privacy Settings
+      = form_for current_user do |f|
+        = f.fields_for :preferences do |preference|
+            h2.section-header Contact Option
+            .section
+              .fancy-checkbox.ib
+                = preference.check_box current_user.shows_contact_info.name, checked_preference('shows_contact_info', current_user.shows_contact_info.value)
+                i
+                label class="epsilon" for="user_preferences_shows_contact_info"            
+                  | Allow other Oh Hey World users to email you
+                
+            h2.section-header Public Check-in History
+            .section
+              .fancy-checkbox.ib
+                = preference.check_box current_user.shows_user_locations.name, checked_preference('shows_contact_info', current_user.shows_user_locations.value)
+                i
+                label class="epsilon" for="user_preferences_shows_user_locations"            
+                 | Allow other Oh Hey World users to see your historical check-ins.
+        = hidden_field_tag "privacty_settings", true
+        = f.submit 'Save Changes', :class => "btn btn-small center"
+        .center-child
+          p.light.zeta Our Privacy Policy can be accessed #{link_to "here", "http://www.ohheyworld.com/privacy.html", target: 'blank'}.

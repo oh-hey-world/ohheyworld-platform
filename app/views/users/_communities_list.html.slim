@@ -1,0 +1,7 @@
+- unless user.communities.empty?
+  ul.profile-community-list
+    li.community-list-header
+      h6 Community Memberships
+    - user.communities.each do |community|
+      li = link_to community do
+        = image_tag community.brand.url, title: "#{community.name} - #{community.tagline}", class: "profile-community-thumbnail"

@@ -1,0 +1,16 @@
+- if user_city_tip && user_city
+  = form_for user_city_tip do |f|
+    = hidden_field_tag :city_id, user_city.city_id
+    = hidden_field_tag :user_id, user_city.user_id
+    .field
+      = f.text_area :tip, class: "margin-bs input-text full-width", placeholder: "Enter a new city tip here…", rows: '10', maxLength: '255'
+    .field
+      = f.label :travel_profile
+      = f.select :travel_profile, options_for_select(UserCityTip::TRAVEL_PROFILE_TYPES.map{ |x| [x.humanize.titleize, x] }), {include_blank: "---"}, {class: ''}
+      = f.label :tags
+      = f.text_field :tag_list
+      = f.label :link_name
+      = f.text_field :link_name
+      = f.label :link_value
+      = f.text_field :link_value
+    .actions.text-center = f.submit 'Save', class: "btn btn--three btn--fixed"

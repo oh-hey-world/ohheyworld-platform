@@ -1,0 +1,2 @@
+module UserProviderFriendsHelper
+end

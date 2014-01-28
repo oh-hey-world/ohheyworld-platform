@@ -1,0 +1,27 @@
+= form_for @user_city do |f|
+  - if @user_city.errors.any?
+    #error_explanation
+      h2 = "#{pluralize(@user_city.errors.count, "error")} prohibited this user_city from being saved:"
+      ul
+        - @user_city.errors.full_messages.each do |message|
+          li = message
+
+  .field
+    = f.label :user_id
+    = f.number_field :user_id
+  .field
+    = f.label :city_id
+    = f.number_field :city_id
+  .field
+    = label_tag :staff_city
+    = check_box_tag :staff_city, 1, params[:staff_city]
+  .field
+    = f.label :summary
+    = f.text_area :summary, class: "margin-bs input-text full-width", placeholder: "Enter a new city summary here…", rows: '10'
+  .field
+    = f.label :tags, class: 'text-center'
+    = f.text_field :tag_list, class: 'field margin-bs input-text full-width'
+  .field
+    = f.label :expertise, class: 'text-center'
+    = f.text_field :expertise_list, class: 'margin-bs input-text full-width'
+  .actions.text-center = f.submit 'Save', class: "btn btn--three btn--fixed margin-b"

@@ -1,0 +1,11 @@
+.modal.hide.fade.center-child id="registrationDialog" tabindex="-1" role="dialog" aria-hidden="true"
+  .modal-header
+    h3 This is a beta site
+  .modal-body
+    p We see you're trying to access the Oh Hey World beta site that's not quite ready. When the site is ready for public consumption, those on our BETA sign up list will be the first to be given access to the site. Please add yourself to the list at #{link_to "Oh Hey World", "http://www.ohheyworld.com/signup.html"}.
+    p
+      | Or if you have a registration code, enter it here:
+      = form_tag users_registration_code_path do
+        = text_field_tag 'registration_code', nil, :placeholder => 'Registration Code'
+        br
+        = submit_tag "Submit", class: "btn btn-small"

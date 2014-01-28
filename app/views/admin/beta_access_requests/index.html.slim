@@ -1,0 +1,19 @@
+h1 Listing beta_access_requests
+
+table
+  tr
+    th Email
+    th
+    th
+    th
+
+  - @beta_access_requests.each do |beta_access_request|
+    tr
+      td = beta_access_request.email
+      td = link_to 'Show', [:admin, beta_access_request]
+      td = link_to 'Edit', edit_admin_beta_access_request_path(beta_access_request)
+      td = link_to 'Destroy', [:admin, beta_access_request], :confirm => 'Are you sure?', :method => :delete
+
+br
+
+= link_to 'New Beta access request', new_admin_beta_access_request_path

@@ -1,0 +1,10 @@
+var content = "<%= escape_javascript(render partial: "dashboard_user", locals: {page_param: "#{params[:view]}_page", user_friends_locations: @people})%>";
+var container = $("#people-location-container");
+container.append(content);
+<% if @people.current_page == @people.total_pages %>
+$("#js-more-people-locations").hide();
+<% else %>
+var href = $("#js-more-people-locations").attr('href');
+href = href.replace("page=<%= @people.current_page%>", "page=<%= @people.current_page + 1%>")
+$("#js-more-people-locations").attr('href', href);
+<% end %>

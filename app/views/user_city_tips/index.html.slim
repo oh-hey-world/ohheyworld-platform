@@ -1,0 +1,21 @@
+h1 Listing user_city_tips
+
+table
+  tr
+    th User City
+    th Tip
+    th
+    th
+    th
+
+  - @user_city_tips.each do |user_city_tip|
+    tr
+      td = user_city_tip.user_city_id
+      td = user_city_tip.tip
+      td = link_to 'Show', user_city_tip
+      td = link_to 'Edit', edit_user_city_tip_path(user_city_tip)
+      td = link_to 'Destroy', user_city_tip, :confirm => 'Are you sure?', :method => :delete
+
+br
+
+= link_to 'New User city tip', new_user_city_tip_path

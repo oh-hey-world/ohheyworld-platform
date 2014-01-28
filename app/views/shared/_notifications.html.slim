@@ -1,0 +1,31 @@
+= form_for @user, url: user_user_location_send_notifications_path(@user)  do |f|
+  = f.error_messages
+  = f.fields_for :user_locations, @new_user_location do |user_location|
+    = user_location.hidden_field :id
+    .divider
+      = user_location.text_area :custom_message, placeholder: "Hey, I just arrived!", class: "input-text full-width notify-form-message", rows: "7"
+    .divider  
+      h2.epsilon Recipients
+      #new-email-contact-entries.notify-contact
+        - notification_type = 'EmailNotificationDetail'
+        - placehoder_text = 'E-mail'
+        = render partial: "notification_contact_details/standard_form", locals: {notification_details: @user.notification_contact_details.where(type: notification_type), f: f, placeholder_name: "Name", placeholder_value: "Email", notification_type: 'EmailNotificationDetail', show_enabled: true}
+      .zeta
+        = button_tag "Add New Email Contact", id: "add-new-contact-email", class: "btn margin-b"
+      #new-sms-contact-entries.notify-contact
+        - notification_type = 'SmsNotificationDetail'
+        - placehoder_text = 'SMS'
+        = render partial: "notification_contact_details/standard_form", locals: {notification_details: @user.notification_contact_details.where(type: notification_type), f: f, placeholder_name: "Name", placeholder_value: "Phone Number", notification_type: 'SmsNotificationDetail', show_enabled: true}
+      .zeta
+        = button_tag "Add New SMS Contact", id: "add-new-contact-sms", class: "btn margin-b"
+    .margin-b  
+      h2.epsilon Share Location
+      .text-center
+        = f.fields_for :preferences do |preference|
+          label class="inline-block"
+            | Twitter
+            = preference.check_box current_user.twitter.name, checked_preference('twitter', current_user.twitter.value)
+          label class="inline-block margin-r"
+            | Facebook
+            = preference.check_box current_user.facebook.name, checked_preference('facebook', current_user.facebook.value)                        
+    = f.submit 'Send', class: "btn btn--primary btn--full margin-b d4-d6 t4-t6"

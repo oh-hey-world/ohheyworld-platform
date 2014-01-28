@@ -1,0 +1,29 @@
+h1 Listing user_contacts
+
+table
+  tr
+    th User
+    th Contact
+    th Subject
+    th Message
+    th Email
+    th Phone
+    th
+    th
+    th
+
+  - @user_contacts.each do |user_contact|
+    tr
+      td = user_contact.user_id
+      td = user_contact.contact_id
+      td = user_contact.subject
+      td = user_contact.message
+      td = user_contact.email
+      td = user_contact.phone
+      td = link_to 'Show', user_contact
+      td = link_to 'Edit', edit_user_contact_path(user_contact)
+      td = link_to 'Destroy', user_contact, :confirm => 'Are you sure?', :method => :delete
+
+br
+
+= link_to 'New User contact', new_user_contact_path

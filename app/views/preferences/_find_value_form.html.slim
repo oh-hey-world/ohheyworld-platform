@@ -1,0 +1,16 @@
+- if can? :update, Preference
+  p
+    = form_for current_user.value_from_finding_friends_preference do |f|
+      .field
+          .span0
+            = hidden_field_tag "user_location_id", @current_location.id
+            = f.hidden_field :id
+            = f.hidden_field :user_id
+            = f.hidden_field :name
+            .fancy-checkbox.ib
+              = f.check_box  :value, id: "value"
+              i
+              label class="delta" for="value"
+                | I get value from quickly finding friends and other travelers currently around me.
+      .actions
+        = f.submit "Submit", class: "btn btn-small"

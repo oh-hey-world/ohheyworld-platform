@@ -1,0 +1,6 @@
+.container.container--push-footer
+	.m2-m6.t3-t7.d3-d7
+	  ul#js-follow-ohw-friends
+	    = render partial: 'user_friends/friends_follow_list', locals: {user_friends: @user_friends, following: true}
+	  - if @user_friends.current_page < @user_friends.total_pages
+	    = link_to "See More", {controller: "user_friends", action: "following", page: @user_friends.current_page + 1}, {remote: true, id: "js-more-ohw-friends-follow", class: 'btn btn--full margin-t margin-b'}

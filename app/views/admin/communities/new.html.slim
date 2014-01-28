@@ -1,0 +1,22 @@
+= form_for [:admin, @community] do |f|
+  = f.label :name
+  = f.text_field :name
+
+  = f.label :question
+  = f.text_field :question
+
+  = f.label :custom_field_label
+  = f.text_field :custom_field_label
+  p Leave this blank if you don't want to use a custom data field
+
+  = f.label :tagline
+  = f.text_field :tagline
+
+  = f.label :description
+  = f.text_area :description
+
+  = f.label :brand
+  = f.file_field :brand
+
+  = f.submit
+

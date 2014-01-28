@@ -1,0 +1,20 @@
+<% if (@user_provider_friends) %>
+  <% people = @user_provider_friends %>
+  <% container = 'js-fb-friends-list' %>
+  <% more_link = 'js-more-provider-friends' %>
+<% else %>
+  <% people = @user_friends %>
+  <% container = 'js-ohw-friends-list' %>
+  <% more_link = 'js-more-ohw-friends' %>
+<% end %>
+var content = "<%= escape_javascript(render partial: "friends_list", locals: {friends: people})%>";
+var container = $("#<%= container %>");
+container.append(content);
+var more_link = $("#<%= more_link%>");
+<% if people.current_page == people.total_pages %>
+more_link.hide();
+<% else %>
+var href = more_link.attr('href');
+href = href.replace("page=<%= people.current_page%>", "page=<%= people.current_page + 1%>")
+more_link.attr('href', href);
+<% end %>

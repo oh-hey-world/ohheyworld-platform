@@ -1,0 +1,19 @@
+<div class="container container--padded container--push-footer">
+	<div class="m2-m6 t4-t6 d4-d6">
+
+	<h1 class="text-center gamma">Forgot your password?</h1>
+
+	<%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post }) do |f| %>
+	  <%= devise_error_messages! %>
+
+	  <div class="margin-b"><%= f.email_field :email, :class => "input-text full-width", :placeholder => "Email" %></div>
+
+	  <div><%= f.submit "Reset Password", :class => "btn btn--primary margin-b btn--full" %></div>
+	<% end %>
+
+	<div class="zeta">
+		<%= render :partial => "devise/shared/links" %>
+	</div>
+
+	</div>
+</div>

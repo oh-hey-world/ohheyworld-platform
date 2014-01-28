@@ -1,0 +1,17 @@
+p#notice = notice
+
+strong Code:
+= @registration_code.code
+
+strong Uses:
+= @registration_code.uses
+
+strong Original Amount:
+= @registration_code.original_amount
+
+strong Description:
+= @registration_code.description
+
+= link_to 'Edit', edit_admin_registration_code_path(@registration_code)
+'|
+= link_to 'Back', admin_registration_codes_path

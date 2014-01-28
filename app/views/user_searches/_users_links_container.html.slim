@@ -1,0 +1,5 @@
+- if users
+  ul#js-user-tags-links
+    = render partial: "users/users_links", locals: {users: users}
+  - if users.total_pages > 1
+    = link_to "See More", {controller: "user_searches", action: "more_users_with_tag", user_tags_page: users.current_page + 1}, {remote: true, id: "js-more-tagged-users", class: 'btn btn--full margin-b'}

@@ -1,0 +1,9 @@
+= form_for user_friend_relationship, url: update_tag_user_friends_path, html: {class: 'js-add-to-profile-tag-form'}, method: :put, remote: true do |f|
+  = f.hidden_field :user_id
+  = f.hidden_field :friend_id
+  - if tag_name
+  	- class_display = (user_friend_relationship.id) ? 'js-follow-tag' : 'js-unfollow-tag'
+  	= hidden_field_tag 'tag', tag_name, class: "js-profile-tag-name"
+  	= link_to tag_name, "#", class: tag_class(following, user_friend_relationship, tag_name)
+  - else
+    = text_field_tag 'tag', "", placeholder: "Add to new list", class: 'text-center input-text js-profile-tag-input'

@@ -1,0 +1,14 @@
+- people.each do |user_provider_friend|
+	li.media.friend-li
+		= link_to((user_provider_friend.provider_friend.user) ? profile_user_path(user_provider_friend.provider_friend.user) : user_provider_friend.provider_friend.link) do
+			figure class="media__img friend-li__img friend-img"
+				= image_tag(user_provider_friend.provider_friend.picture_url+'?width=96&height=96')
+				- unless user_provider_friend.provider_friend.user
+					figcaption class="icon-figcaption icon-facebook" aria-hidden="true" data-icon="&#xe006;"
+		.media__body.friend-li__body
+			strong #{user_provider_friend.provider_friend.user_name}
+			- if user_provider_friend.provider_friend.user
+				- if user_profile_blurb(user_provider_friend.provider_friend.user) != "Undisclosed"
+					div.darkgray #{truncate(user_profile_blurb(user_provider_friend.provider_friend.user), :length => 48)}
+		.friend-li__btn.text-right
+			= render partial: "user_provider_friends/follow_form", locals: {user_provider_friend: user_provider_friend, can_show_friend_add: true}

@@ -1,0 +1,5 @@
+.fb-user-invite-form.friend-li__email aria-hidden="true" style="display:none"
+  = form_for user_provider_friend, remote: true, method: :put, html: {class: 'fb-invite-friend'} do |f|
+    = f.hidden_field :id, class: 'fb-friend-id'
+    = f.email_field :email, :placeholder => "Enter their email and we'll invite them.", class: 'fb-friend-email text-input full-width'
+    = f.submit "Send", class: 'fb-friend-invite-submit btn btn--small'

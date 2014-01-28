@@ -1,0 +1,146 @@
+.container.container--padded.container--bottom
+  .m2-m6.t2-t8.d2-d8  
+    = form_for current_user do |f|
+      = render( :partial => 'preferences/settings_form', :locals => {:f => f} )
+
+      .section
+        h2.delta Twitter Authentication
+        p 
+          | In order to tweet your location, you’ll need to authenticate with Twitter.  
+        - if current_user.provider_valid?('twitter')
+          .m3-m5.t4-t6.d4-d6
+            = link_to("Remove Twitter Authentication", "#{settings_user_path(current_user)}?remove_provider=twitter", class: "btn btn--full")
+        - else
+          .m3-m5.t4-t6.d4-d6 
+            = link_to("Twitter",'', id: "twitter-login-settings", class: "btn btn--twitter btn--full")
+
+      .section
+        h2.delta Facebook Authentication
+        p 
+          | In order to show you Facebook friends near you, we need to import your Facebook friend list. We promise we won't share this information with anyone else.
+        - if current_user.provider_valid?('facebook')
+          .m3-m5.t4-t6.d4-d6
+            = link_to("Remove Facebook Authentication", "#{settings_user_path(current_user)}?remove_provider=facebook", class: "btn btn--full")
+        - else
+          .m3-m5.t4-t6.d4-d6     
+            = link_to("Facebook",'', id: "facebook-login-settings", class: "btn btn--facebook btn--full")
+      .section
+        h2.delta Find Friends
+        .m3-m5.t4-t6.d4-d6
+          a.btn.btn--full.btn--three href="/user_provider_friends/follow" Find Friends
+
+      .section
+        h2.delta WordPress.org Plugin
+        p 
+          | For those with travel blogs (& using WordPress.org), you can <a href="http://wordpress.org/extend/plugins/oh-hey-world/">download the Oh Hey World WordPress plugin from the directory</a>. By using the plugin, you'll never have to worry about updating the "current location" on your blog again. <a href="http://wordpress.org/extend/plugins/oh-hey-world/">DOWNLOAD HERE</a>.
+
+      .section
+        h2.delta Notifications
+        p 
+          | You can receive emails or texts when another user with the same interests checks-in near you.
+        p
+          = link_to "Manage Notifications",  tag_notifications_user_path(current_user), class: "btn btn--three "
+        p 
+          | You can receive emails or texts when anyone you follow on OHW checks-in near you.
+          = f.fields_for :preferences do |preference|
+
+            div
+              h2.delta Email Nearby
+              p
+                label class="epsilon" for="user_preferences_email_close_following"
+                  | Get an email when people you follow checkin near you
+                  = preference.check_box current_user.email_close_following.name, checked_preference('email_close_following', current_user.email_close_following.value)
+
+            div
+              h2.delta Sms Nearby
+              label class="epsilon" for="user_preferences_sms_close_following"
+                | Get an Sms when people you follow checkin near you
+                = preference.check_box current_user.sms_close_following.name, checked_preference('sms_close_following', current_user.sms_close_following.value)
+
+      .section
+        h2.delta Email Newsletter
+        p 
+          | Our newsletter shares the latest developments and cool features happening at Oh Hey World. We'll never email you more than once a month, nor share your email address with others (how uncool would that be!). And when we have giveaways and launches you'll be the first to know. :)
+        p
+          = link_to "Email Newsletter",  "http://ohheyworld.us5.list-manage2.com/subscribe?u=80ed0ad08dc14c1c0312be4cf&id=b7e582d2bc", target: 'blank', class: "btn btn--three "
+
+      .section
+        h2.delta Email Notifications
+        p 
+          | We all wish everyone followed us on social media, but that’s simply not the case. You can notify whoever you’d like via e-mail, but chances are good e-mails are going to be used for your parents, significant other, or close extended family or friends.
+        .notify-contact.js-notification-contacts
+          = render( :partial => 'notification_contact_details/settings_form', :locals => {f: f, notification_type: 'EmailNotificationDetail', placehoder_text: 'E-mail', contacts: current_user.notification_contact_details.where(type: 'EmailNotificationDetail') << current_user.notification_contact_details.build(type: 'EmailNotificationDetail')} )
+        = link_to "Add New Email Contact", "#", {class: 'btn js-add-email-contact'}
+      
+      .section
+        h2.delta SMS (Text Message) Notifications
+        p 
+          | For those who would rather get instantaneous alerts pushed to them via SMS, enter the phone numbers to notify below.
+        .notify-contact.js-notification-contacts
+          = render( :partial => 'notification_contact_details/settings_form', :locals => {f: f, notification_type: 'SmsNotificationDetail', placehoder_text: 'Sms', contacts: current_user.notification_contact_details.where(type: 'SmsNotificationDetail') << current_user.notification_contact_details.build(type: 'SmsNotificationDetail')} )
+        = link_to "Add New Sms Contact", "#", {class: 'btn js-add-sms-contact'}
+      
+      = f.fields_for :preferences do |preference|  
+        .section
+          h2.delta Contact Option
+          label class="epsilon" for="user_preferences_shows_contact_info"            
+            | Allow other Oh Hey World users to email you
+            = preference.check_box current_user.shows_contact_info.name, checked_preference('shows_contact_info', current_user.shows_contact_info.value)
+            
+        .section
+          h2.delta Public Check-in History
+          label class="epsilon" for="user_preferences_shows_user_locations"            
+            | Allow other Oh Hey World users to see your historical check-ins.
+            = preference.check_box current_user.shows_user_locations.name, checked_preference('shows_contact_info', current_user.shows_user_locations.value)
+
+        .section
+          h2.delta Private Checkins
+          label class="epsilon" for="user_preferences_checkins_default_private"
+            | Make your checkins private by default.
+            = preference.check_box current_user.checkins_default_private.name, checked_preference('checkins_default_private', current_user.checkins_default_private.value)
+
+        .section
+          h2.delta Email on Checkin Comments
+          label class="epsilon" for="user_preferences_checkin_comments"
+            | Receive emails when someone comments on your checkins.
+            = preference.check_box current_user.email_for_comment.name, checked_preference('email_for_comment', current_user.email_for_comment.value)
+
+        .section
+          h2.delta Email on Checkin Likes
+          label class="epsilon" for="user_preferences_checkin_likes"
+            | Receive emails when someone likes checkins.
+            = preference.check_box current_user.email_for_like.name, checked_preference('email_for_like', current_user.email_for_like.value)
+      
+      .section
+        h2.delta Re-import Facebook Friends
+        p 
+          | We already imported this when you originally signed up. If you're not seeing certain Facebook friends, try re-importing. (This runs in the background, so you do not have to remain on this page.)
+        .m-all.t4-t6.d4-d6      
+          = button_tag "Import Friends", id: "import_friends", class: "btn btn--facebook btn--full"
+      
+      .section
+        h2.delta Email
+        p 
+          | Checking in by email is done by sending your current location (eg Seattle, WA or Barcelona, Spain) to checkin@ohheyworld.com. You'll need to use the email address you registered with to check in.
+
+        p 
+          | In the future, this email will be used to receive notifications about specific individuals or lists of people who you choose to subscribe to.
+
+        p
+          = f.label :email
+          = f.text_field :email, class: "input-text"
+      .section
+        h2.delta My Mobile/Sms Number
+        p 
+          | If you'd like to use our check in via text message feature, we'll need your mobile number to match your text check-ins to the correct Oh Hey World profile. Checking in by text message is done by sending your current location (eg Seattle, WA or Barcelona, Spain) to 502-413-2629.
+
+        p 
+          | In the future, this number will be used to receive notifications about specific individuals or lists of people who you choose to subscribe to.
+        - if @countries
+          p
+            = f.collection_select(:phone_country_code_id, @countries, :id, :phone_code, {:allow_blank => false}, :class => "margin-rs")
+            = f.text_field :phone, class: "input-text", :placeholder => "555-555-5555"
+      .m3-m5.t4-t6.d4-d6    
+        = f.submit 'Save', :class => "btn btn--primary btn--full"
+
+      

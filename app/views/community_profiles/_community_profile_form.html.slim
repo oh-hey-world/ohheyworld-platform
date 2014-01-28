@@ -1,0 +1,33 @@
+p.delta.margin-t Discover and connect with others nearby who share your interest in #{@community.name}.
+div
+  = form_for @member, url: community_member_path, html: { class: ""} do |f|
+    = f.label "tagline" do
+    	| Why do you love #{@community.name}? 
+    	span.zeta (required)
+    = f.text_area :tagline, rows: 5, class: "input-text margin-b"
+
+    = f.label "answer" do
+    	| #{@community.question} 
+    	span.zeta (required)
+    = f.text_area :answer, rows: 5, class: "input-text margin-b"
+
+    - unless @community.custom_field_label.blank?
+      = f.label "custom_field" do
+      	| #{@community.custom_field_label} 
+      	span.zeta (required)
+      = f.text_area :custom_field, class: "input-text margin-b"
+	.margin-b
+		= f.label "email_frequency", "Receive email about #{@community.name} members:"
+		= select_tag(:email_frequency, options_for_select(['Nearby',"All","None"]))
+
+	- if @current_user.current_location
+		.margin-b
+			= f.label "current_location", "Your current location (powered by Oh Hey World):"
+			p.tight 
+				| #{link_to @current_user.current_location.name, [@current_user, @current_user.current_location] } 
+				span.zeta
+					| - 
+					a href="/" target="_blank" Update Location 
+					| (opens in new window)
+
+    = f.submit "Complete Process", class: "btn btn--comp block margin-b"

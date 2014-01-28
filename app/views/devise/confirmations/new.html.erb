@@ -1,0 +1,18 @@
+<div class="container container--padded container--push-footer">
+	<div class="m2-m6 t4-t6 d4-d6">
+				<h2 class="gamma text-center">Confirmation Email</h2>
+				<p class="zeta">Think we messed up sending your confirmation code? Tell us your email and we'll try again.</p>
+
+		<%= form_for(resource, :as => resource_name, :url => user_confirmation_path, :html => { :method => :post }) do |f| %>
+		  <%= devise_error_messages! %>
+
+		  <div class="margin-b"><%= f.email_field :email, :placeholder => "Email", :class => "input-text text-center full-width" %></div>
+
+		  <div><%= f.submit "Send Confirmation Email", :class => "btn btn--primary margin-b full-width" %></div>
+		<% end %>
+
+		<div class="zeta">
+		<%= render :partial => "devise/shared/links" %>
+		</div>
+  </div>
+</div>

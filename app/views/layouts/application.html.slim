@@ -1,0 +1,62 @@
+doctype html
+/[if lt IE 9]
+  | <html class="ie" xmlns:fb="http://www.facebook.com/2008/fbml">
+| <!--[if gte IE 9||!(IE)]<!-->
+html lang="en" xmlns:fb="http://www.facebook.com/2008/fbml"
+  | <!--<![endif]-->
+
+  = render "shared/header"
+  body class="#{((controller.class == UsersController and controller.action_name == 'index')) ? 'home' : ''}"
+    /!Prompt IE 6 users to install Chrome Frame. Remove this if you support IE 6. chromium.org/developers/how-tos/chrome-frame-getting-started
+    /! [if lt IE 7]<p class=chromeframe>Your browser is <em>ancient!</em> <a href="http://browsehappy.com/">Upgrade to a different browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.</p>
+
+    #isMobileDevice data-value="#{mobile_device?}"
+    .viewport
+      - if (!@render_home && user_signed_in?)
+        #user data-id="#{current_user.slug}" data-complated-first-checkin="#{current_user.completed_first_checkin}" data-last-latitude="#{@current_latitude}" data-last-longitude="#{@current_longitude}"
+        = render 'shared/mobile_nav'
+        .wrapper.js-wrapper
+          = render "shared/nav_logged_in"
+          - if @in_admin && @in_admin == true
+            = render partial: "admin/shared/nav"
+          = render :partial => 'shared/flash_messages', :locals => { :flash => flash }
+          #activity-indicator style="display:none" class="flash-message alert modal"
+            button class="close" data-dismiss="alert"
+              | &#10005;
+            | Got it! We'll add them.
+          /= render "shared/adbar"
+          = yield
+          #fb-root
+          = render "shared/footer" 
+
+      - else
+        - unless @hide_logged_out
+          = render "shared/nav_logged_out"
+        = render :partial => 'shared/flash_messages', :locals => { :flash => flash }
+        #activity-indicator style="display:none" class="flash-message alert modal zeta"
+          button class="close" data-dismiss="alert"
+            | x
+          | Processing&#8230; but it's safe to browse away.
+        = yield
+        = render "shared/footer" 
+
+  /!
+    Javascripts
+    \==================================================
+  /! Placed at the end of the document so the pages load faster   
+  script src="https://get.gridsetapp.com/13140/overlay/"
+  = javascript_include_tag "application"
+  - if(Rails.env.staging? || Rails.env.production?)
+    = javascript_include_tag "google_analytics"
+  script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyBpl_-aFpXKKvmKVTbV_UquMhqQnRSgang&sensor=true"
+  script type="text/javascript" src="http://j.maxmind.com/app/geoip.js"
+  script type="text/javascript" src="http://connect.facebook.net/en_US/all.js"
+  script type="text/javascript"
+    == "var signUpLink = '#{new_user_registration_url}';"
+    =="FB.init({"
+    =="status : true,"
+    =="cookie : true,"
+    =="xfbml  : true,"
+    =="appId: '#{FACEBOOK_KEY}'"
+    =="});"
+    == "var pathMinimumParameters =  '#{@path_minimum_parameters}';"

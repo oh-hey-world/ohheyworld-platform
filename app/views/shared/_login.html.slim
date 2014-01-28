@@ -1,0 +1,6 @@
+.modal.hide.fade.center-child id="logInModal" tabindex="-1" role="dialog" aria-hidden="true"
+  .modal-header
+    h3 id="login-label" Login
+  .modal-body
+    = link_to "Sign Up/Sign In with Facebook", "/users/auth/facebook", :class => "btn btn--facebook-auth"
+    = link_to('Login ', new_user_session_path)

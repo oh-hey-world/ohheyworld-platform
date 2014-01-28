@@ -1,0 +1,14 @@
+.modal.hide.fade.center-child id="followFriendDialog" tabindex="-1" role="dialog" aria-hidden="true"
+  .modal-header
+    h3 Add to my groups
+  .modal-body
+    = label_tag "Close Friends"
+    = check_box_tag "close_friends_tag", 1, true
+    br
+    = label_tag "Family"
+    = check_box_tag "family_tag", 1, true
+    br
+    = label_tag "Other"
+    = text_field_tag "other_friend_tags", nil, placeholder: "Colleagues, Friends"
+    br
+    = button_tag "Complete", id: "completeFriendAdd"

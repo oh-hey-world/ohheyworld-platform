@@ -1,0 +1,24 @@
+p#notice = notice
+
+p
+  strong User:
+  = @user_contact.user_id
+p
+  strong Contact:
+  = @user_contact.contact_id
+p
+  strong Subject:
+  = @user_contact.subject
+p
+  strong Message:
+  = @user_contact.message
+p
+  strong Email:
+  = @user_contact.email
+p
+  strong Phone:
+  = @user_contact.phone
+
+= link_to 'Edit', edit_user_contact_path(@user_contact)
+'|
+= link_to 'Back', user_contacts_path

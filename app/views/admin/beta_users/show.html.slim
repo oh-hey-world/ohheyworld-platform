@@ -1,0 +1,7 @@
+p
+  strong Email:
+  = @beta_user.email
+
+= link_to 'Edit', edit_admin_beta_user_path(@beta_user)
+'|
+= link_to 'Back', admin_beta_users_path

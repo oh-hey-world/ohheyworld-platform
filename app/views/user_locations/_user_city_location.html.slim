@@ -1,0 +1,10 @@
+.m2-m6.t4-t6.d4-d6
+  = link_to "People Nearby", friends_user_location_path(@user_location.slug), class: "btn btn--comp btn--full margin-b"
+  .margin-b
+  	= render partial: "user_cities/links", locals: {location: (@current_location) ? @current_location : @user_location.location, total_tips_for_city: @total_tips_for_city}
+  	- if current_user && current_user.is_allowed_content_creation?
+  		a.btn.btn--full.margin-bs.js-button-open href="#"
+  			| Add City Tips
+	  	.js-button-get-opened.transition.reveal-vert
+	    	= render partial: 'user_cities/mini_form', locals: {user_city: @user_city, user_city_tip: @user_city_tip}
+	    	= render partial: 'user_city_tips/mini_form', locals: {user_city: @user_city, user_city_tip: @user_city_tip}

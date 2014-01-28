@@ -1,0 +1,8 @@
+div
+  = f.fields_for :notification_contact_details, notification_details  do |notification_contact_detail|
+    = notification_contact_detail.check_box :enabled_to_send_notification, :class => "notify-contact-check"
+    = notification_contact_detail.text_field :name, :placeholder => (placeholder_name) ? placeholder_name : notification_contact_detail.object.placeholder_name, :class => "notify-contact-text notify-contact-name"
+    = notification_contact_detail.text_field :value, :placeholder => (placeholder_value) ? placeholder_value : notification_contact_detail.object.placeholder_value, :class => "notify-contact-text notify-contact-value"
+    = notification_contact_detail.hidden_field :user_id, :value => current_user.id
+    = notification_contact_detail.hidden_field :type, :value => notification_type if notification_type
+	  

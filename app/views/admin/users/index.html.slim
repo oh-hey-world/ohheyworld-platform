@@ -1,0 +1,39 @@
+h1 Listing admin_users
+h3 Search
+= form_for(@admin_user, :url => { :action => "index" }, :html => {:method => :get} ) do |f|
+  = f.label :slug
+  = f.text_field :slug
+  = f.label :email
+  = f.text_field :email
+  = f.submit "Search"
+- if @admin_users.count > 1
+  = will_paginate @admin_users
+table
+  tr
+    th Email
+    th Slug
+    th Sign in count
+    th First name
+    th Last name
+    th
+    th
+    th
+    th
+  - if @admin_users.count >= 1
+    - @admin_users.each do |admin_user|
+      tr
+        td = admin_user.email
+        td = admin_user.slug
+        td = admin_user.sign_in_count
+        td = admin_user.first_name
+        td = admin_user.last_name
+        td = link_to 'Impersonate', impersonate_admin_user_path(admin_user)
+        td = link_to 'Show', admin_user
+        td = link_to 'Edit', edit_admin_user_path(admin_user)
+        td = link_to 'Destroy', admin_user, :confirm => 'Are you sure?', :method => :delete
+  - else
+    p No users found
+
+br
+
+= link_to 'New User', new_admin_user_path

@@ -1,0 +1,57 @@
+= form_for current_user, url: update_profile_user_path(current_user), html: { multipart: true } do |f|
+  p
+    = f.error_messages
+  p
+    = f.label :first_name
+    = f.text_field :first_name, class: "input-text"
+  p
+    = f.label :last_name
+    = f.text_field :last_name, class: "input-text"
+  = f.hidden_field :id
+  p
+    = f.label :email
+    = f.text_field :email, class: "input-text"
+  p
+    = label_tag 'User Name'
+    = f.text_field :nickname, class: "input-text"
+  p
+    = f.label "Originally from"
+    = f.fields_for :home_location, current_user.home_location do |location|
+      = location.text_field :user_input, class: "location-input input-text", placeholder: 'What city are you in now?', 'data-validation'=>'validate_min_length length3'
+  p
+    = f.label :countries, "Passports (select multiple using CMD/CTRL)"
+    = f.collection_select(:country_ids, Country.order(:name), :id, :name, {:allow_blank => false}, {:multiple => true, :size => 5})
+  p
+    = f.label :languages, "Languages Spoken (select multiple using CMD/CTRL)"
+    = f.collection_select(:language_ids, Language.order(:name), :id, :name, {:allow_blank => false}, {:multiple => true, :size => 5})
+  / The text area is causing flickering on the menu animation and I don't know why.
+  p
+    = f.label :blurb, "Short Biography"
+    = f.text_area(:blurb, :cols => 70, :rows => 10, :class => "input-text")
+  p
+    = f.label :blog_url
+    = f.text_field :blog_url, class: "input-text"
+  p
+    = f.label :birthday
+    = f.date_select(:birthday, :start_year => 1900, :end_year => Time.now.year)
+  p
+    div Profile Photo
+    = f.fields_for :user_assets, current_user.user_assets.build(default: true) do |user_asset|
+      = user_asset.hidden_field :default
+      = user_asset.file_field :asset
+  p
+    div Change Password (leave blank if you don't want to change it)
+    .field
+      = f.label :password, "Password"
+      = f.password_field :password, :autocomplete => "off"
+    .field
+      = f.label :password_confirmation
+      = f.password_field :password_confirmation
+
+  /p
+    = f.fields_for :preferences do |preference|
+      = preference.label :nomadic do
+        | Nomadic
+        = preference.check_box current_user.nomadic.name, checked_preference('nomadic', current_user.nomadic.value)
+  p
+    = f.submit 'Save Changes', class: "btn btn--primary"

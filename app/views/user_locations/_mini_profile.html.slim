@@ -1,0 +1,46 @@
+li.table-item
+  - person = person.friend if person.class == UserFriend
+  - if (person.class == User)
+    - user = person
+    - description = person.description
+    - image_link = person.profile_picture_url('?width=96&height=96')
+  - else
+    - user = person.user
+    - user_provider_friend = current_user.user_provider_friends.select{ |x| x.user_id == current_user.id && x.provider_friend_id == person.id}.first
+    - description = user.description if user
+    - image_link = "#{person.picture_url}?width=96&height=96"
+  .media.friend-li.margin-bs  
+    = link_to((user) ? profile_user_path(user) : person.link, class: "") do
+      figure class="friend-img media__img friend-li__img"
+        img src="#{image_link}"
+        - unless user
+          figcaption class="icon-figcaption icon-facebook" aria-hidden="true" data-icon="&#xe006;"
+    .media__body.friend-li__body
+      = link_to((user) ? profile_user_path(user) : person.link, class: "") do
+        strong #{person.user_name}
+      /-if description
+        div #{description}
+      .darkgray
+        = close_location_label((person.current_location) ? person.current_location.location : person.location, person)
+      - if (user)
+        = render partial: 'users/tags_form', locals: {list: user.interest_list, list_name: 'interests', list_text: '', user: user}
+    - if (user_provider_friend)
+      .friend-li__btn.text-right
+        = render partial: 'user_provider_friends/follow_form', locals: {user_provider_friend: user_provider_friend, can_show_friend_add: true}
+    - elsif(user)
+      .friend-li__btn.text-right
+        = render partial: "user_friends/follow_form", locals: {can_show_friend_add: true, user: user }
+
+    /.go-away-for-now
+      #{close_location_label((person.current_location) ? person.current_location.location : person.location, person)}
+      - user = (person.class == User) ? person : person.user
+      = link_to "Learn more", (user) ? profile_user_path(user) : person.link
+      - if user
+        - shows_contact_info = preference_true?(user.shows_contact_info.name, user.shows_contact_info.value)
+        - shows_user_locations = preference_true?(user.shows_user_locations.name, user.shows_user_locations.value)
+        - if shows_contact_info
+          |  |
+          - if shows_contact_info
+            = mail_to user.email, "Contact", :replace_at => "_at_", :replace_dot => "_dot_"
+        - if user.current_location && shows_user_locations
+          .zeta.light Checked in #{distance_of_time_in_words_to_now(user.current_location.created_at)} ago

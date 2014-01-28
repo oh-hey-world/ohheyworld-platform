@@ -1,0 +1,7 @@
+- if user_provider_friend.provider_friend.user_id
+  = render partial: "user_friends/follow_form", locals: {can_show_friend_add: true, user: user_provider_friend.provider_friend.user }
+- else
+  .invite-section
+    = button_tag 'Invite', disable_with: "Please wait", class: 'invite-to-ohw btn btn--small btn--three', 'data-uid' => user_provider_friend.provider_friend.uid
+    = render partial: 'shared/fb_user_invite_dialog', locals: {user_provider_friend: user_provider_friend}
+    .js-fb-friend-invited

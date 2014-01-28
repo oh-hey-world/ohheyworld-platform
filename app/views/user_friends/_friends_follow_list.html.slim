@@ -1,0 +1,14 @@
+- user_friends.each do |user_friend|
+	- user = (following) ? user_friend.friend : user_friend.user
+	li.media.friend-li
+		= link_to(profile_user_path(user)) do
+			figure class="media__img friend-li__img friend-img"
+				= image_tag( user.profile_picture_url('?width=96&height=96'))
+				- unless user
+					figcaption class="icon-figcaption icon-facebook" aria-hidden="true" data-icon="&#xe006;"
+		.media__body.friend-li__body
+			strong #{user.user_name}
+			- if user_profile_blurb(user) != "Undisclosed"
+				div.darkgray #{truncate(user_profile_blurb(user), :length => 48)}
+		.friend-li__btn.text-right
+			= render partial: "user_friends/follow_form", locals: {can_show_friend_add: true, user: user }

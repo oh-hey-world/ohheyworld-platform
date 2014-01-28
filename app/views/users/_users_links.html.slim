@@ -1,0 +1,15 @@
+- users.each do |user|
+  li.media.friend-li
+    = link_to(profile_user_path(user)) do
+      = image_tag(user.profile_picture_url('?width=96&height=96'), class: 'media__img friend-li__img friend-img')
+    .media__body.friend-li__body
+      = link_to(profile_user_path(user)) do
+        strong #{user.user_name}
+        div
+          = close_location_label((user.current_location) ? user.current_location.location : user.home_location, user)
+        /- unless user.blurb.blank?
+          div.darkgray #{truncate(user_profile_blurb(user), :length => 48)}
+    .friend-li__btn.text-right
+      /= render partial: "user_searches/follow_form", locals: {can_show_friend_add: true, friend_relationship: user_friend, user: user }
+      = render partial: "user_friends/follow_form", locals: {can_show_friend_add: true, user: user }
+

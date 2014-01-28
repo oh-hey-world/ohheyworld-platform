@@ -1,0 +1,24 @@
+.container.container--padded.container--push-footer
+  .m2-m6.t2-t8.d2-d8
+    = select_tag :groups, options_for_select(UserFriend::BASE_TAGS, params[:view]), {prompt: "Your Network", class: "full-width margin-b js-travel-feed-group"}
+    .tab-pane
+    h1.delta
+      - if params[:view] == "close_friends"
+        | Close Friend Check Ins
+      - elsif params[:view] == "family"
+        | Family Check Ins
+      - else
+        | Recent Check Ins
+    - if @people.size == 0
+      div
+        p Looks like an empty slate.
+        p.margin-bs Try finding some friends&#8230;
+        a.btn.btn--primary.btn--full.margin-b href="/user_provider_friends/follow" Find Friends
+        p.margin-bs Or some like minded individuals based on interest...
+        a.btn.btn--comp.btn--full.margin-b href="/users/tags/" Explore
+    div.news-item
+      p.delta.margin-ts.margin-ls.margin-rs <strong>Coming Soon:</strong> Notifications for comments, likes, check-ins, and all your activity on Oh Hey World.    
+    #people-location-container
+      = render partial: "dashboard_user", locals: {user_friends_locations: @people}
+    - unless @people.current_page == @people.total_pages
+      = link_to "See More", {controller: "user_friends", action: "dashboard", view: params[:view], page: @people.current_page + 1}, {remote: true, id: "js-more-people-locations", class: 'btn btn--full margin-b'}

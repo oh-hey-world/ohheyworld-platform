@@ -1,0 +1,14 @@
+- if person
+  - if (person.class == UserProviderFriend)
+    - current_relation_id = person.provider_friend_id
+  - else
+    - current_relation_id = person.friend_id
+  = form_for person, url: {action: "update_friend_profile_tag"}, remote: true, html: {id: 'js-profile-tag-form', style: 'display:none'} do |f|
+    ul
+    - @unique_friend_tags.each do |tag|
+      li
+        = link_to tag.name, "#", class: 'js-add-to-profile-tag'
+    = f.text_field :tag_list, class: 'js-profile-tag-list'
+    = hidden_field_tag "person_type", person.class
+    = hidden_field_tag "relationship_id", current_relation_id
+    = f.submit 'Save', class: 'js-profile-tag-submit btn btn--fixed btn--primary'

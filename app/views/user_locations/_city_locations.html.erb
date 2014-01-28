@@ -1,0 +1,15 @@
+<div class="m-all t-all d-all">
+	<div id="locationsMap" class="profile-map"/>
+	<script type="text/javascript">
+	  var userLocations = new Array();
+	  <% if @current_location %>
+				<% location = @current_location %>
+				var latitude = <%= location.latitude %>;
+		    var longitude = <%= location.longitude %>;
+				var address = '<%= location.address %>';
+				var zoom = <%= "0" %>;
+				userLocations.push([latitude, longitude, address, zoom]);
+		<% end %>
+	</script>
+	</div>
+</div>

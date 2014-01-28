@@ -1,0 +1,10 @@
+- if current_user
+  = link_to "Contact", "#", class: 'js-contact-form-display btn btn--fixed btn--three'
+  = form_for current_user.user_contacts.build(contact_id: user.id), html: {class: 'js-contact-form', style: 'display:none'}, remote: true do |f|
+    /= f.label :subject
+    /= f.text_field :subject
+    /= f.label :message
+    = f.text_area :message, placeholder: "This form sends an email to #{@user.user_name}. Want to ask for some advice? Meet for coffee or a drink? Enter your message here.", class: "input-text margin-ts margin-bs full-width"
+    = f.hidden_field :contact_id
+    = f.hidden_field :user_id
+    = f.submit "Send", :class => "btn btn--fixed btn--primary margin-bs"

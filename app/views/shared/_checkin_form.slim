@@ -1,0 +1,20 @@
+= form_for @new_user_location, html: {class: 'checkin-form-step-1'} do |f|
+  = f.error_messages
+  = f.fields_for :location, Location.new do |location|
+  	.clearfix
+	  	.m2-m6
+		    = location.text_field :user_input, placeholder: 'What city are you in now?', class: "js-location-input location-input input-text text-center center", autocomplete: "off", 'data-validation'=>'validate_custom regexp/\s\w|,\w/', 'data-validation-error-msg'=>"You must enter at least 2 words", 'data-validation-help'=>"You must enter at least 2 words", tabindex: 1
+      - if @current_user.current_location
+          p.light.text-center.zeta Last Check-in: #{link_to @current_user.current_location.name_and_date, [@current_user, @current_user.current_location] }
+      - else
+          p.zeta.light.text-center e.g. &quot;Barcelona, Spain&quot; or &quot;Seattle, WA&quot;
+  	= f.hidden_field :user_id, class: 'hidden'
+  .m3-m5.t4-t6.d4-d6
+    .text-center.zeta
+      label for="user_location_private" class="checkbox checkbox--privacy check-in-form__privacy"
+        = f.check_box :private, {class: "checkbox__check"}
+        span class="btn btn--small checkbox__btn" data-off-icon="&#xe011;" data-on-icon="&#xe00f;" data-off-text="Public" data-on-text="Private"
+  .m3-m5.t4-t6.d4-d6
+    = f.submit 'Check In', class: 'btn btn--primary full-width margin-bs'
+  .m2-m6.t4-t6.d4-d6
+    .text-center.zeta #{@fact.sample.html_safe}

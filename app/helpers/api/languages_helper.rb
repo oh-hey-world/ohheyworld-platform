@@ -1,0 +1,2 @@
+module Api::LanguagesHelper
+end

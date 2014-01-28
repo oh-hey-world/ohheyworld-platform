@@ -1,0 +1,42 @@
+- if friends
+  - friends.each do |person|
+    - if (person.class == UserProviderFriend)
+      - current_person = person.provider_friend
+      - current_location = current_person.location
+      - current_relation_id = person.provider_friend_id
+      - current_path = (current_person.user) ? profile_user_path(current_person.user) : current_person.link
+      - image_path = "#{current_person.picture_url}?width=96&height=96"
+    - else
+      - current_person = person.friend
+      - current_location =  (current_person && current_person.current_location) ? current_person.current_location.location : nil
+      - current_relation_id = person.friend_id
+      - current_path = profile_user_path(current_person)
+      - image_path = current_person.profile_picture_url('?width=96&height=96')
+
+    - if current_person
+      li.media.friend-li
+        = link_to(current_path) do
+          = image_tag(image_path, class: 'media__img friend-li__img friend-img')
+        .media__body.friend-li__body
+          = link_to(current_path) do
+            strong
+              = current_person.user_name
+          - if current_location
+            div
+              = current_location.name
+        - if params[:tag]
+          = form_for person, url: {action: "update_friend_tag"}, remote: true, html: {class: '.text-right friend-li__btn js-remove-tag-form'} do |f|
+            = hidden_field_tag "tag",  params[:tag]
+            = hidden_field_tag "person_type", person.class
+            = hidden_field_tag "relationship_id", current_relation_id
+
+            .text-right.friend-li__btn
+              = f.submit 'Remove', class: 'js-remove-tag-submit btn btn--small'
+        - else
+          - if (person.class == UserProviderFriend)
+            .text-right.friend-li__btn
+              = render partial: "user_provider_friends/follow_form", locals: {user_provider_friend: person, can_show_friend_add: true}
+          - else
+            .text-right.friend-li__btn
+              - user_friend = current_user.user_friends.select{ |x| x.friend_id == current_person.id }.first
+              = render partial: "user_searches/follow_form", locals: {can_show_friend_add: true, friend_relationship: user_friend, user: current_person }

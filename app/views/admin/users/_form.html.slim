@@ -1,0 +1,105 @@
+= form_for [:admin, @admin_user] do |f|
+  - if @admin_user.errors.any?
+    #error_explanation
+      h2 = "#{pluralize(@admin_user.errors.count, "error")} prohibited this admin_user from being saved:"
+      ul
+        - @admin_user.errors.full_messages.each do |message|
+          li = message
+
+  .field
+    = f.label :email
+    = f.text_field :email
+  .field
+    = f.label :reset_password_token
+    = f.text_field :reset_password_token
+  .field
+    = f.label :reset_password_sent_at
+    = f.datetime_select :reset_password_sent_at
+  .field
+    = f.label :sign_in_count
+    = f.number_field :sign_in_count
+  .field
+    = f.label :current_sign_in_at
+    = f.datetime_select :current_sign_in_at
+  .field
+    = f.label :last_sign_in_at
+    = f.datetime_select :last_sign_in_at
+  .field
+    = f.label :current_sign_in_ip
+    = f.text_field :current_sign_in_ip
+  .field
+    = f.label :created_at
+    = f.datetime_select :created_at
+  .field
+    = f.label :updated_at
+    = f.datetime_select :updated_at
+  .field
+    = f.label :first_name
+    = f.text_field :first_name
+  .field
+    = f.label :last_name
+    = f.text_field :last_name
+  .field
+    = f.label :gender
+    = f.text_field :gender
+  .field
+    = f.label :timezone
+    = f.number_field :timezone
+  .field
+    = f.label :locale
+    = f.text_field :locale
+  .field
+    = f.label :picture_url
+    = f.text_field :picture_url
+  .field
+    = f.label :link
+    = f.text_field :link
+  .field
+    = f.label :blurb
+    = f.text_area :blurb
+  .field
+    = f.label :home_town_location_id
+    = f.number_field :home_town_location_id
+  .field
+    = f.label :nickname
+    = f.text_field :nickname
+  .field
+    = f.label :slug
+    = f.text_field :slug
+  .field
+    = f.label :agrees_to_terms
+    = f.check_box :agrees_to_terms
+  .field
+    = f.label :completed_first_checkin
+    = f.check_box :completed_first_checkin
+  .field
+    = f.label :import_job_id
+    = f.number_field :import_job_id
+  .field
+    = f.label :import_job_finished_at
+    = f.datetime_select :import_job_finished_at
+  .field
+    = f.label :send_overrides
+    = f.text_area :send_overrides
+  .field
+    = f.label :authentication_token
+    = f.text_field :authentication_token
+  .field
+    = f.label :phone
+    = f.text_field :phone
+  .field
+    = f.label :confirmation_token
+    = f.text_field :confirmation_token
+  .field
+    = f.label :confirmed_at
+    = f.datetime_select :confirmed_at
+  .field
+    = f.label :confirmation_sent_at
+    = f.datetime_select :confirmation_sent_at
+  .field
+    = f.label :unconfirmed_email
+    = f.text_field :unconfirmed_email
+  .field
+    = f.label :phone_country_code_id
+    = f.number_field :phone_country_code_id
+  .actions = f.submit 'Save'

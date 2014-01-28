@@ -1,0 +1,9 @@
+p
+  = @admin_country.name
+- unless @admin_country.flag.url.blank?
+  p
+    = image_tag(@admin_country.flag.url(:thumb))
+
+= link_to 'Edit', edit_admin_country_path(@admin_country)
+'|
+= link_to 'Back', admin_countries_path

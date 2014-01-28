@@ -1,0 +1,8 @@
+.m-all.t-all.d-all
+  .overlay.overlay-profile.text-center
+    img.profile-img src="#{@user.profile_picture_url('?width=200&height=200')}"
+    h1.gamma.tight #{@user.user_name}
+    - if @user.current_location && @user.current_location.private && !is_same_user?
+      span.epsilon Undisclosed Location
+    - else
+      span.epsilon #{curent_location_profile(@user)}

@@ -1,0 +1,54 @@
+- @page_title = "Invite People To The #{@community.name} Community"
+.pure-u-1
+  .text-center
+    h3.margin-t ="Introduce #{@community.name} to someone in your area today!"
+    a.btn.btn.cursor--disabled.margin-r.margin-b.small-screen-full Invite via email
+    a.btn.btn--twitter.margin-b.small-screen-full href="https://twitter.com/share?text=Check+out+the+#{@community.name}+community+on+%40ohheyworld&url=http%3A%2F%2Fohheyworld.com#{community_path(@community)}" target="_blank" Share on Twitter
+/.pure-u-1
+  .pure-g
+    - unless @users.empty?
+      - @users.each_with_index do |user, index|
+        .pure-u-1-5.potential-member
+          .card
+            .pure-g
+              .pure-u-1
+                a href="#"
+                  img.avatar src="#{user.picture_url}?width=300&height=300" title="#{user.nickname}"
+              .pure-u-1
+                = "#{user.first_name} #{user.last_name}"
+                br
+                = "#{user.current_location.location.name}"
+
+          .potential-member-options
+            .pure-g
+              .pure-u
+                .pure-menu.pure-menu-open.menu-card
+                  ul
+                    li.invite-menu-item = link_to "Invite #{user.first_name} to #{@community.name}", "#"
+                    li = link_to "Travel Profile", user
+              .pure-u
+                .card
+                  ul.interests
+                    li
+                      = "Shared with #{@community.name}: "
+                    - (user.interest_list & @community_concerns).each do |tag|
+                      li
+                        = link_to tag, users_tags_path(tag), :class => "interest-link"
+                    br /
+                    li Other interests:&nbsp;
+                    - (user.interest_list - @community_concerns).each do |tag|
+                      li
+                        = link_to tag, users_tags_path(tag), :class => "interest-link"
+          .potential-invite-modal
+            - if current_user
+              = form_for current_user.user_contacts.build(contact_id: user.id), html: {class: 'pure-form'}, remote: true do |f|
+                = f.text_area :message, value: "Hey #{user.first_name} #{user.last_name}, I think you should join the Kiva community on Oh Hey World to discover others nearby!\n\n\nJust click this link to find us:\n\n" + url_for(action: "show", controller: "communities", id: @community.community_slug, only_path: false), class: "input-text margin-ts margin-bs full-width"
+                = f.hidden_field :contact_id
+                = f.hidden_field :user_id
+                = f.submit "Send", class: "pure-button pure-button-alert potential-invite-modal-end"
+              a.potential-invite-modal-end href="#" Close
+
+        - if (index+1) % 5 == 0 || user == @users.last
+          .pure-u-1.potential-member-menu
+
+#modal-screen

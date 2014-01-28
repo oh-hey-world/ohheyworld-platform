@@ -1,0 +1,44 @@
+- if user_signed_in? && !@community.has_as_member?(@user)
+  .text-center
+    = link_to "Join #{@community.name} Community", join_community_member_path(@community, @user), class: "btn btn--primary pure-button-alert margin-t"
+
+- if !user_signed_in?
+  .text-center
+    p.delta.margin-t Discover and connect with others nearby who share your interest in #{@community.name}.
+    = link_to "Join #{@community.name} Community", new_user_session_path, class: "btn btn--primary pure-button-alert"
+
+
+.margin-b
+  - if @user
+    - unless @members_nearby.empty?
+      h4.margin-t.margin-b.text-center = "#{@community.name} Members Near #{@user.current_location.location.name}"
+      - @members_nearby.each do |member|
+        .community__grid
+          = link_to community_member_path(@community, member), class: "community__member" do
+            img src="#{member.user.picture_url}?width=300&height=300" title="#{member.user.nickname}"
+        
+            h4.community__member-name = "#{member.user.first_name} #{member.user.last_name}"
+            .community__member-location = "#{member.user.current_location.location.name}"
+
+.margin-b
+  h4.margin-t.margin-b.text-center = "More #{@community.name} Members"
+  - unless @members.empty?
+    - @members.each do |member|
+      .community__grid
+        = link_to community_member_path(@community, member), class: "community__member" do
+          img.avatar src="#{member.user.picture_url}?width=300&height=300" title="#{member.user.nickname}"
+          
+          h4.community__member-name = "#{member.user.first_name} #{member.user.last_name}"
+          .community__member-location = "#{member.user.current_location.location.name}"
+  - else
+    p.text-center 
+      | Know someone who should be here? 
+      = link_to "Invite them!", invite_community_members_path(@community)
+
+.margin-b
+  h4.margin-t.margin-b.text-center = "#{@community.name} Members Also Like"
+  .community__grid
+    .community__member
+      .community__member-blank
+      h4.community__member-name Other Organization
+

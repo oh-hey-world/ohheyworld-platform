@@ -1,0 +1,16 @@
+<div class="m-all t-all d-all">
+	<div id="locationsMap" class="profile-map"/>
+	<script type="text/javascript">
+	  var userLocations = new Array();
+	  <% if @user_locations %>
+			<% @user_locations.each do |user_location| %>
+				<% location = user_location.location %>
+				var latitude = <%= location.latitude %>;
+		    var longitude = <%= location.longitude %>;
+				var address = '<%= location.address %>';
+				userLocations.push([latitude, longitude, address]);
+			<% end %>
+		<% end %>
+	</script>
+	</div>
+</div>

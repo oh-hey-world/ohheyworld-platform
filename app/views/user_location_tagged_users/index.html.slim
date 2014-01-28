@@ -1,0 +1,17 @@
+h1 Listing user_location_tagged_users
+
+table
+  tr
+    th
+    th
+    th
+
+  - @user_location_tagged_users.each do |user_location_tagged_user|
+    tr
+      td = link_to 'Show', user_location_tagged_user
+      td = link_to 'Edit', edit_user_location_tagged_user_path(user_location_tagged_user)
+      td = link_to 'Destroy', user_location_tagged_user, :confirm => 'Are you sure?', :method => :delete
+
+br
+
+= link_to 'New User location tagged user', new_user_location_tagged_user_path

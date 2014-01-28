@@ -1,0 +1,12 @@
+= form_for [:admin, @beta_access_request] do |f|
+  - if @beta_access_request.errors.any?
+    #error_explanation
+      h2 = "#{pluralize(@beta_access_request.errors.count, "error")} prohibited this beta_access_request from being saved:"
+      ul
+        - @beta_access_request.errors.full_messages.each do |message|
+          li = message
+
+  .field
+    = f.label :email
+    = f.text_field :email
+  .actions = f.submit 'Save'

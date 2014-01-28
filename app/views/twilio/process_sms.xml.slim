@@ -1,0 +1,12 @@
+Response
+  Sms
+    - if @success
+      | We successfully logged your check in to: #{@new_user_location.location.city_state_country}
+    - else
+      | We were unable to process your request because
+      - if @new_user_location.errors
+        = "#{pluralize(@new_user_location.errors.count, "error")} prohibited this location from being saved:"
+        - @new_user_location.errors.full_messages.each do |message|
+          = message
+      - elsif !@user
+        | we were unable to find your account with your phone number.

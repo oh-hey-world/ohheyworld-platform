@@ -1,0 +1,32 @@
+- if current_user && can_show_friend_add && user
+  /- button_class = (user_friends.map(&:friend_id).include?(user.id)) ? "btn btn--fixed" : "btn btn--fixed btn--primary"
+  /= form_for current_user.user_friends.build(friend_id: user.id), remote: true, html: {class: 'follow-friend'} do |f|
+    = f.hidden_field :user_id
+    = f.hidden_field :friend_id
+    = f.hidden_field :tag_list, class: 'tag-list'
+    = f.submit button_text, class: "#{button_class} friend-submit"
+    = button_tag "List", class: 'btn btn--fixed btn--primary', id: 'js-profile-tag-list-btn'
+  - friend_relationship = current_user.user_friends.select{ |x| x.friend_id == user.id }.first
+  - is_following = (friend_relationship)
+  - user_friend_relationship = user_friend_relationship(user, friend_relationship)
+  - follow_text = (is_following) ? "Following" : "Follow"
+  - follow_class = (is_following) ? "btn" : "btn btn--primary"
+  .btn.btn-group.btn--split.btn--small class=follow_class
+    = form_for user_friend_relationship, url: update_tag_user_friends_path, html: {class: 'js-add-to-profile-tag-form'}, method: :put, remote: true do |f|
+      = f.hidden_field :user_id
+      = f.hidden_field :friend_id
+      = hidden_field_tag 'tag', follow_text, class: 'js-profile-tag-name js-profile-follow-tag'
+      = f.submit follow_text, class: "btn--split__btn button js-profile-tag-button"
+    button.btn--split__btn.btn--split__caret.dropdown-toggle data-toggle="dropdown"
+      span.caret
+    ul.dropdown-menu
+      li.js-profile-hidden style="display:none"
+      - @unique_friend_tags.each do |tag|
+        li.js-unique-tags
+          = render partial: 'user_friends/friends_tag_form', locals: {user_friend_relationship: user_friend_relationship, tag_text: tag.name, tag_name: tag.name, following: is_following}
+      li.js-profile-form-text-field
+        = render partial: 'user_friends/friends_tag_form', locals: {user_friend_relationship: user_friend_relationship, tag_text: nil, tag_name: nil, following: is_following}
+      li.js-profile-form-unfollow style="#{(is_following) ? "" : "display:none"}"
+        = render partial: 'user_friends/friends_tag_form', locals: {user_friend_relationship: user_friend_relationship, tag_text: "Unfollow", tag_name: "Unfollow", following: is_following}
+      li.js-profile-form-empty style="display:none"
+        = render partial: 'user_friends/friends_tag_form', locals: {user_friend_relationship: user_friend_relationship, tag_text: "empty", tag_name: "empty", following: is_following}

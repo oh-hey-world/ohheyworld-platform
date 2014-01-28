@@ -1,0 +1,19 @@
+= form_for([:admin, @admin_country], :html => { :multipart => true }) do |f|
+  - if @admin_country.errors.any?
+    #error_explanation
+      h2 = "#{pluralize(@admin_country.errors.count, "error")} prohibited this admin_country from being saved:"
+      ul
+        - @admin_country.errors.full_messages.each do |message|
+          li = message
+  p
+    = f.label :name
+    = f.text_field :name
+  p
+    = f.label :phone_code
+    = f.text_field :phone_code
+  - unless @admin_country.flag_file_name.blank?
+    p
+      = image_tag(@admin_country.flag.url(:thumb))
+  p
+    = f.file_field :flag
+  .actions = f.submit 'Save'

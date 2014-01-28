@@ -1,0 +1,2 @@
+module Api::UserAssetsHelper
+end

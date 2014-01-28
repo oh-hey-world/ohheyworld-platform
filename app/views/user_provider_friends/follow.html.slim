@@ -1,0 +1,13 @@
+.container.container--padded.container--push-footer
+  .m2-m6.t3-t7.d3-d7
+    = form_for @new_user, remote: true, url: {controller: 'user_friends', action: 'send_invitation_email'}, method: :put, html: {class: 'js-invite-friend'} do |f|
+      = f.text_field :email, placeholder: "Enter their email and we'll invite them.", class: 'js-friend-email input-text full-width margin-bs'
+      = f.submit "Send", class: "btn btn--primary btn--full margin-b"
+  - unless current_user.provider('facebook')
+  	= link_to("#", id: "facebook-login-settings") do
+  		.ad-bar <strong>No friends?</strong> Connect to Facebook to see more <span class="zeta">&#9654;</span>
+  .m2-m6.t3-t7.d3-d7
+		ul#js-follow-friends
+			= render partial: 'friends_follow_list', locals: {people: @user_provider_friends}
+		- if @user_provider_friends.current_page < @user_provider_friends.total_pages
+		  = link_to "See More", {controller: "user_provider_friends", action: "follow", page: @user_provider_friends.current_page + 1}, {remote: true, id: "js-more-friends-follow", class: 'btn btn--full margin-t margin-b'}

@@ -1,0 +1,6 @@
+html
+  head
+    meta content="text/html; charset=UTF-8" http-equiv="Content-Type"
+  body
+    p
+      | #{@voter.user_name} liked your checkin to #{link_to @user_location.name, user_user_location_url(@user_location.user, @user_location). Click here to view it}.

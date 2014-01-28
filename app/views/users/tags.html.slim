@@ -1,0 +1,40 @@
+- users = @users
+- tag = (params[:perma_list]) ? params[:perma_list] : params[:tag]
+- @page_title = (tag) ? "People interested in #{tag} - Oh Hey World" : "People you are following"
+- interests_active = (params[:interests] == "true")
+- city_status = (!interests_active) ? 'active' : ''
+- interests_status = (interests_active) ? 'active' : ''
+.container.container--padded.container--push-footer
+  .m2-m6.t3-t7.d3-d7
+    .btn.btn-group.btn--split.btn--split--big.btn--full.margin-b
+      button[class="btn--split__btn js-segment-tags #{city_status}"] City
+      button[class="btn--split__btn js-segment-tags js-interests #{interests_status}"] Interests
+
+    - if @new_user_search
+      div[class="#{(interests_active) ? 'hidden' : ''}"]
+        = form_for @new_user_search, html: {class: 'js-search-form'} do |f|
+          div
+            /= f.error_messages
+            = f.text_field :user_input, placeholder: 'Search for a city…', id: 'js-city-tag-search', class: "input-text text-center full-width margin-bs"
+            = hidden_field_tag 'search_id', nil, class: 'search-value-id'
+            = hidden_field_tag 'search_type', nil, class: 'search-type'
+            = f.hidden_field :user_id
+            /= f.submit 'Search', class: "btn btn--full margin-b"
+    div[class="#{(!interests_active) ? 'hidden' : ''}"]
+      = form_for 'users/tags' do |f|
+        = text_field_tag :list, @list, class: "input-text full-width margin-bs text-center", placeholder: "Search for an interest…"
+        = f.submit 'Search', class: "btn btn--full margin-b"
+      - unless params[:perma_list]
+        h2.delta.text-center Popular Communities
+        a href="/communities/kiva" class="interest-highlight margin-bs" Kiva
+        a href="/communities/impact-hub" class="interest-highlight margin-bs" Impact HUB
+        a href="/communities/avc" class="interest-highlight margin-bs" AVC
+        a href="/communities/geek-estate" class="interest-highlight margin-bs" Geek Estate
+        a href="/communities/zillow" class="interest-highlight margin-bs" Zillow
+        a href="/communities/oh-hey-world" class="interest-highlight margin-bs" Oh Hey World
+
+    ul#js-people-with-tags-container
+      = render partial: 'users_links', locals: {users: users}
+    - if users.total_pages > 1
+      .m3-m5.t4-t6.d4-d6
+        = link_to "See More", {controller: "users", action: "more_people_with_tags", list: params[:perma_list], page: users.current_page + 1, id: params[:id]}, {remote: true, id: "js-more-people-with-tags", class: 'btn btn--full margin-b'}

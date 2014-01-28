@@ -1,0 +1,6 @@
+.container.container--padded.container--bottom
+	.m2-m6.t2-t8.d2-d8
+		h1.gamma.text-center id="check-in-label" Send Notifications
+		= render partial: "shared/notifications", locals: { location_input: params[:location_input] }
+    .m2-m6.t4-t6.d4-d6
+      = link_to "Skip", user_user_location_path(@user.slug, @new_user_location.slug), class: 'btn btn--comp btn--full'

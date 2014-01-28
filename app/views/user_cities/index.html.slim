@@ -1,0 +1,21 @@
+h1 Listing user_cities
+
+table
+  tr
+    th User
+    th City
+    th
+    th
+    th
+
+  - @user_cities.each do |user_city|
+    tr
+      td = user_city.user_id
+      td = user_city.city_id
+      td = link_to 'Show', user_city
+      td = link_to 'Edit', edit_user_city_path(user_city)
+      td = link_to 'Destroy', user_city, :confirm => 'Are you sure?', :method => :delete
+
+br
+
+= link_to 'New User city', new_user_city_path

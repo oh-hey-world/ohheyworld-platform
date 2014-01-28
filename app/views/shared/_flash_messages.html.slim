@@ -1,0 +1,9 @@
+#flash_messages.flash-messages
+  - flash.each do |name, msg|
+    - if msg.is_a?(String)
+      div class="flash-message flash-#{name} alert modal" id="flash_#{name}"
+      	button class="close" data-dismiss="alert"
+	   	 | &#10005;
+      	| #{msg}
+  - if defined?(flush_flash) and flush_flash == true
+    - flash.clear

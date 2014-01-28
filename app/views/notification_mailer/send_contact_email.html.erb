@@ -1,0 +1,10 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+</head>
+<body>
+<p><%= @message%></p>
+<p>To email <%= @user.first_name %> back, send an email from the contact button here - <%= link_to "#{@user.first_name}'s Profile", profile_user_url(@user) %></p>
+</body>
+</html>

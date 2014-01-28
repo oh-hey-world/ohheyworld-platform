@@ -1,0 +1,9 @@
+p#notice = notice
+
+p
+  strong Email:
+  = @beta_access_request.email
+
+= link_to 'Edit', edit_admin_beta_access_request_path(@beta_access_request)
+'|
+= link_to 'Back', admin_beta_access_requests_path

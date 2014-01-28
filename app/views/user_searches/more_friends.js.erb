@@ -1,0 +1,10 @@
+var content = "<%= escape_javascript(render( partial: 'user_locations/profile_user_group', locals: {people: @people, can_show_friend_add: true} ))%>";
+var container = $("#people-container-<%= @page_param%>");
+container.append(content);
+<% if @people.current_page == @people.total_pages %>
+  $("#js-more-people-<%= @page_param%>").hide();
+<% else %>
+  var href = $("#js-more-people-<%= @page_param%>").attr('href');
+  href = href.replace("page=<%= @people.current_page%>", "page=<%= @people.current_page + 1%>")
+  $("#js-more-people-<%= @page_param%>").attr('href', href);
+<% end %>

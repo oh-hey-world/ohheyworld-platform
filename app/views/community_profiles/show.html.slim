@@ -1,0 +1,33 @@
+- @page_title = "#{@member.user.first_name} #{@member.user.last_name}'s #{@community.name} Community Profile"
+.clearfix
+  .community__grid.margin-t
+    .community__member
+      = link_to @member.user do
+        = image_tag "#{@member.user.picture_url}?width=500&height=500"
+        h4.community__member-name = "#{@member.user.first_name} #{@member.user.last_name}"
+        .community__member-location = "#{@member.user.current_location.name}"
+
+  .community__member.community__profile-info.margin-t
+    h5 = "I love #{@community.name} because:"
+    p = @member.tagline
+    h5 = @community.question
+    = @member.answer
+    - unless @community.custom_field_label.blank?
+      h5 = @community.custom_field_label
+      p = @member.custom_field
+
+ul
+  - if current_user
+    li = link_to "Contact", "#", class: "btn btn--primary connect-toggle"
+  - else
+    li = link_to "Sign in to Connect", "#", class: "btn btn--secondary"
+  /li = link_to "Travel Profile", @member.user
+
+.pure-u-1-2#profile-connect
+  - if current_user
+    = form_for current_user.user_contacts.build(contact_id: @member.user.id), html: {class: 'pure-form'}, remote: true do |f|
+      = f.text_area :message, placeholder: "This form sends an email to #{@member.user.user_name}. Want to ask for some advice? Meet for coffee or a drink? Enter your message here.", class: "input-text margin-ts margin-bs full-width"
+      = f.hidden_field :contact_id
+      = f.hidden_field :user_id
+      = f.submit "Send", class: "pure-button pure-button-alert connect-end"
+    a.connect-end href="#" Close

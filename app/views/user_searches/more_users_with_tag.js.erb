@@ -1,0 +1,11 @@
+var content = "<%= escape_javascript(render partial: "users/users_links", locals: {users: @users_with_tags})%>";
+var container = $("#js-user-tags-links");
+container.append(content);
+var moreLink = $("#js-more-tagged-users")
+<% if @users_with_tags.current_page == @users_with_tags.total_pages %>
+moreLink.hide();
+<% else %>
+var href = moreLink.attr('href');
+href = href.replace("page=<%= @users_with_tags.current_page%>", "page=<%= @users_with_tags.current_page + 1%>")
+moreLink.attr('href', href);
+<% end %>

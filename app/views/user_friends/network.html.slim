@@ -1,0 +1,5 @@
+.alt.container
+  .row
+    .seven.column
+      - if @current_location
+        #{render( :partial => 'user_locations/profile_section', :locals => {:people => @user_friends, :header_text => "Friends Checked-in to #{@current_location.name}", :footer_text => 'There are currently no other friends in', :page_param => 'page', :show_no_results => true, can_show_friend_add: true} )}

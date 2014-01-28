@@ -1,0 +1,12 @@
+p#notice = notice
+
+p
+  strong User City:
+  = @user_city_tip.user_city_id
+p
+  strong Tip:
+  = @user_city_tip.tip
+
+= link_to 'Edit', edit_user_city_tip_path(@user_city_tip)
+'|
+= link_to 'Back', user_city_tips_path

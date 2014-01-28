@@ -1,0 +1,2 @@
+- if (current_user.import_job_finished?)
+	= render( :partial => 'user_locations/profile_section', :locals => {:people => @provider_friends, :header_text => "Facebook Friends Living Nearby #{@current_location.name}", :footer_text => 'You do not have any friends that live in', :page_param => 'friends_page', :show_no_results => true, can_show_friend_add: false} )

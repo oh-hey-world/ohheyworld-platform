@@ -1,0 +1,5 @@
+- user_location.user_location_assets.each do |user_location_asset|
+  .js-checkin-asset-container
+    = image_tag user_location_asset.asset.url, class: "city-checkin-item__img news-item__img"
+    - if is_same_user?
+      = link_to 'x', user_location_asset, method: :delete, remote: true, :class => "grid-item__tr-btn js-checkin-asset"

@@ -1,0 +1,13 @@
+- if user_location
+  .news-item__date
+  	.zeta
+  		.float-left
+  			| #{user_location.created_at.strftime("%B %d, %Y")}
+		  .text-right
+		  	= form_for user_location, url: {controller: 'user_locations', action: "like_checkin", id: user_location.id}, html: {class: 'js-checkin-like-form'}, remote: true do |f|
+				  = f.hidden_field :id
+				  = button_tag(:class => "btn btn--small btn--three margin-rs") do
+				    .js-checkin-like.inline-block #{user_location.likes.size}
+				    span &nbsp;
+				    span.icon--tight aria-hidden="true" data-icon="&#xe014;"      
+  			= render partial: 'user_locations/comments_form', locals: {user_location: user_location, comment: @comment, default_open: default_open}

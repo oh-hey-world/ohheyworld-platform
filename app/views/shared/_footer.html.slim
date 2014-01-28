@@ -1,0 +1,30 @@
+footer.container.footer
+  .m2-m6.t2-t8.d2-d8
+    nav.nav.nav-footer
+      ul
+        li
+          a href="/about" About
+        li
+          a href="/mission" Mission
+        li
+          a href="/feedback" Feedback          
+        li
+          a href="http://blog.ohheyworld.com/" Travel Blog
+        li
+          a href="/team" Team
+        li
+          a href="/jobs/" Jobs
+        li
+          a href="/privacy/" Privacy
+        li
+          a href="/tos/" Terms of Service
+        li
+          a href="/faq/" FAQ  
+        li
+          a href="/api/" Developers
+    span &copy; Oh Hey World #{Time.now.strftime("%Y")}
+    - unless user_signed_in?
+      p
+        iframe src="http://www.facebook.com/plugins/facepile.php?app_id=#{FACEBOOK_KEY}&colorscheme=dark" scrolling="no" frameborder="0" style="border:none;overflow:hidden; width:300px;" allowTransparency="true"
+/a.feedback.hide href="http://www.ohheyworld.com/product-feedback.html"
+  img src="/assets/feedback.png"

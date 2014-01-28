@@ -1,0 +1,36 @@
+ul#nav-mobile.nav-mobile.nav.nav--stacked.m-all
+      li
+        span.nav-mobile__beta-flag Beta
+      li
+        = link_to(profile_user_path(current_user)) do
+          .m2-m7.t2-t4.d1-d2
+            img.nav-mobile__avatar src="#{current_user.profile_picture_url}"
+            | #{current_user.user_name} 
+      li
+        a href="/user_friends/travel_feed" 
+          .m2-m7.t2-t4.d1-d2
+            span aria-hidden="true" data-icon="&#xe004;" 
+            | Travel Feed          
+      li
+        a href="/"
+          .m2-m7.t2-t4.d1-d2
+            span aria-hidden="true" data-icon="&#xe000;" 
+            | Check In
+      li
+        = link_to(current_user.current_location) do
+          .m2-m7.t2-t4.d1-d2
+            span aria-hidden="true" data-icon="&#xe003;" 
+            | Current City 
+      li
+        a href="/users/tags/"
+          .m2-m7.t2-t4.d1-d2
+            span aria-hidden="true" data-icon="&#xe005;" 
+            | Search                 
+      li
+        = link_to(destroy_user_session_path, :method => :delete) do
+          .m2-m7.t2-t4.d1-d2
+            span aria-hidden="true" data-icon="&#xe010;" 
+            | Log Out
+
+
+          

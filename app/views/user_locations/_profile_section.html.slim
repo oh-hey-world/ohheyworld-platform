@@ -1,0 +1,6 @@
+- if ((show_no_results && people.size == 0) || people.size > 0)
+  .m2-m6.t2-t8.d2-d8
+	  h2.epsilon
+	    | #{header_text} (#{(people.class == Array) ? 0 : people.total_entries})
+  	= render partial: "user_locations/profile_users", locals: {:people => people, :footer_text => footer_text, :page_param => page_param, can_show_friend_add: can_show_friend_add}
+  	.divider

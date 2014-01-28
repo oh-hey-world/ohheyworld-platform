@@ -1,0 +1,49 @@
+- @page_title = "The Oh Hey World API - People's Current Location"
+
+.container.container--padded
+  .m2-m6.t2-t8.d2-d8
+    h1.gamma API for Developers
+    
+    p 
+      | 
+    p 
+      | Have an application or web service that involves knowing a person's location (at the city level) or time zone? But don't have a good way of getting your user base to continually keep that location current? Event applications or local commerce and news applications fit the bill.
+    p 
+      | Our API requires a user name as an input, and returns that person's current location.
+      
+    h4.epsilon
+      | Example input: 
+
+    .pre 
+      | drewmeyers
+
+    p  
+    h4.epsilon
+      | Example output:
+
+    .pre
+      | {
+      		"user": 
+      		  {
+      		  	"first_name":"Drew",
+      		  	"last_name":"Meyers",
+      		  	"total_days_traveled":282,
+      		  	"user_location":{"user_location_assets":[],
+      		  	"location":{"city_state_country":"San Francisco, California, United States",
+      		  	"country":{"name":"United States",
+      		  	"flag_url":"/system/countries/flags/000/000/176/original/us.png?1356126739"}}},
+      		  	"countries":[{"country":{"name":"United States",
+      		  	"flag_url":"/system/countries/flags/000/000/176/original/us.png?1356126739"}}]
+      		  }
+        }
+    
+    p  
+    h4.epsilon
+      | Applications and services built with the API:
+
+    .pre
+      | <a href="http://wordpress.org/extend/plugins/oh-hey-world/">Oh Hey World WordPress Plugin</a>       
+         
+    p
+    p <a href="mailto:drew@ohheyworld.com">Contact us for additional details<a>.
+    p PS: If you are an iOS developer, see <a href="https://github.com/oh-hey-world/ios/">this code we open sourced on GitHub</a>.

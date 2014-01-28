@@ -1,0 +1,102 @@
+p#notice = notice
+
+p
+  strong Email:
+  = @admin_user.email
+p
+  strong Reset password token:
+  = @admin_user.reset_password_token
+p
+  strong Reset password sent at:
+  = @admin_user.reset_password_sent_at
+p
+  strong Sign in count:
+  = @admin_user.sign_in_count
+p
+  strong Current sign in at:
+  = @admin_user.current_sign_in_at
+p
+  strong Last sign in at:
+  = @admin_user.last_sign_in_at
+p
+  strong Current sign in ip:
+  = @admin_user.current_sign_in_ip
+p
+  strong Created at:
+  = @admin_user.created_at
+p
+  strong Updated at:
+  = @admin_user.updated_at
+p
+  strong First name:
+  = @admin_user.first_name
+p
+  strong Last name:
+  = @admin_user.last_name
+p
+  strong Gender:
+  = @admin_user.gender
+p
+  strong Timezone:
+  = @admin_user.timezone
+p
+  strong Locale:
+  = @admin_user.locale
+p
+  strong Picture url:
+  = @admin_user.picture_url
+p
+  strong Link:
+  = @admin_user.link
+p
+  strong Blurb:
+  = @admin_user.blurb
+p
+  strong Home town location:
+  = @admin_user.home_town_location_id
+p
+  strong Nickname:
+  = @admin_user.nickname
+p
+  strong Slug:
+  = @admin_user.slug
+p
+  strong Agrees to terms:
+  = @admin_user.agrees_to_terms
+p
+  strong Completed first checkin:
+  = @admin_user.completed_first_checkin
+p
+  strong Import job:
+  = @admin_user.import_job_id
+p
+  strong Import job finished at:
+  = @admin_user.import_job_finished_at
+p
+  strong Send overrides:
+  = @admin_user.send_overrides
+p
+  strong Authentication token:
+  = @admin_user.authentication_token
+p
+  strong Phone:
+  = @admin_user.phone
+p
+  strong Confirmation token:
+  = @admin_user.confirmation_token
+p
+  strong Confirmed at:
+  = @admin_user.confirmed_at
+p
+  strong Confirmation sent at:
+  = @admin_user.confirmation_sent_at
+p
+  strong Unconfirmed email:
+  = @admin_user.unconfirmed_email
+p
+  strong Phone country code:
+  = @admin_user.phone_country_code_id
+
+= link_to 'Edit', edit_admin_user_path(@admin_user)
+'|
+= link_to 'Back', admin_users_path

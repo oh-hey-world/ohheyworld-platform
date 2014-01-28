@@ -1,0 +1,5 @@
+ul#js-user-locations
+  = render partial: 'user_locations/trips', locals: {user_locations: user_locations}
+- if user_locations.total_pages > 1
+		.m3-m5.t4-t6.d4-d6
+			= link_to "See More", {controller: "users", action: "more_locations", page: user_locations.current_page + 1}, {remote: true, id: "js-more-users-locations", class: 'btn btn--full margin-b'}

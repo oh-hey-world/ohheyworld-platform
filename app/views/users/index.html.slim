@@ -1,0 +1,8 @@
+- @page_title = "Oh Hey World - Your Trusted Travel Companion"
+- if user_signed_in?
+	- if @current_user.completed_first_checkin
+	  = render partial: "shared/checkin"
+	- else
+		= render partial: "shared/tutorial_slideshow"
+- else
+	= render "shared/welcome_3"

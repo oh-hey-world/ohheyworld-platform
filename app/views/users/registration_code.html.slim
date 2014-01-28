@@ -1,0 +1,10 @@
+div class="container container--padded"
+	div class="m2-m6 t4-t6 d4-d6"
+		p class="text-center gamma"
+			strong Beta Access
+		p class="zeta"
+			| Oh Hey World is currently in a closed beta. You'll need an invite code to access the site. Space is limited, but if you <em>really</em> want early access, <a href="mailto:shannon@ohheyworld.com?subject=I want in!">email us</a> and maybe we can hook you up.
+		p
+		  = form_tag users_enter_registration_code_path do
+		  	= text_field_tag 'registration_code', nil, :placeholder => 'Registration Code', :class => "input-text full-width margin-b"
+		  	= submit_tag "Submit", class: "btn btn--primary full-width"

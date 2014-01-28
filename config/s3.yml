@@ -1,0 +1,12 @@
+development:
+  bucket: ohheyworld-dev
+  access_key_id: AKIAICVR63EVUVG7J3WA
+  secret_access_key: 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
+test:
+  bucket: ohheyworld-dev
+  access_key_id: AKIAICVR63EVUVG7J3WA
+  secret_access_key: 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
+production:
+  bucket: ohheyworld
+  access_key_id: AKIAICVR63EVUVG7J3WA
+  secret_access_key: 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

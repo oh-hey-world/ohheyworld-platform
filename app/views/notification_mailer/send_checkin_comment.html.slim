@@ -1,0 +1,10 @@
+html
+  head
+    meta content="text/html; charset=UTF-8" http-equiv="Content-Type"
+  body
+    p
+      | #{@comment.user.user_name} commented on your checkin to #{link_to @user_location.name, user_user_location_url(@user_location.user, @user_location)}
+    p
+      | Comment: #{@comment.body}
+    p
+      | Please reply on the checkin, not via email

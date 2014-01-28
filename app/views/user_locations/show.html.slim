@@ -1,0 +1,9 @@
+- if @user_location
+  - if is_same_user?
+    = render partial: "same_user_show"
+  - else
+    = render partial: "other_user_show"
+- else
+  | No location set
+  
+

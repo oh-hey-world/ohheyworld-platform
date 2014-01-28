@@ -1,0 +1,39 @@
+- if user_friends_locations.count > 0
+  - user_friends_locations.each do |user_friends_location|
+      - user = user_friends_location.user
+      - if user
+        - link = user_user_location_path(user.slug, user_friends_location.slug)
+        - image_link = user.profile_picture_url('?width=96&height=96')
+      - else
+        - link =  user_friend.link
+        - image_link = "#{user.picture_url}?width=96&height=96"
+      .news-item.clearfix
+        = link_to(link, {:class => "media"}) do
+            = image_tag(image_link, {:class => "media__img news-item__avatar"})
+            .media__body.news-item__body
+              strong #{user.user_name}
+              br 
+              | Checked in to 
+              strong #{user_friends_location.name}
+              /div
+                | with
+                - @user__friends_location.user_location_tagged_users.each do |user_location_tagged_user|
+                  span
+                    |  
+                    - if user_location_tagged_user.user
+                      - user = user_location_tagged_user.user
+                      = user.user_name 
+                    - elsif user_location_tagged_user.provider_friend
+                      - provider_friend = user_location_tagged_user.provider_friend
+                      = provider_friend.user_name  
+        = link_to(link, {:class => "news-item__img-wrap"}) do
+          = render partial: 'user_locations/user_location_assets', locals: {user_location: user_friends_location}
+        /.news-item__city #{user_friends_location.name}
+        = render partial: "user_locations/like_checkin", locals: {user_location: user_friends_location, default_open: false, link: link}
+      /= form_for user_friend, remote:true do |f|
+        = f.label 'Email'
+        = f.check_box :send_email, class: 'user-friend-contact-preference'
+        = f.label 'Sms'
+        = f.check_box :send_sms, class: 'user-friend-contact-preference'
+        = f.hidden_field :user_id
+        = f.hidden_field :friend_id

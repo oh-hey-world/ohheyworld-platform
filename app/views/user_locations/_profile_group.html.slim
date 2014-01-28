@@ -1,0 +1,2 @@
+- group.each do |person|
+  = render( :partial => 'user_locations/mini_profile', :locals => {person: person, user_location: user_location, user_friends: user_friends, can_show_friend_add: can_show_friend_add} )

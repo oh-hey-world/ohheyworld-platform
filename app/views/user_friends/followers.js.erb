@@ -1,0 +1,12 @@
+<%- people = @user_friends%>
+var content = "<%= escape_javascript(render( partial: 'user_friends/friends_follow_list', locals: {user_friends: people, following: false} ))%>";
+var container = $("#js-follow-ohw-friends");
+container.append(content);
+var moreLink = $("#js-more-ohw-friends-follow");
+<% if people.current_page == people.total_pages %>
+moreLink.hide();
+<% else %>
+var href = moreLink.attr('href');
+href = href.replace("page=<%= people.current_page%>", "page=<%= people.current_page + 1%>")
+moreLink.attr('href', href);
+<% end %>

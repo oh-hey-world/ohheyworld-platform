@@ -1,0 +1,110 @@
+.container
+  = render partial: "user_locations/recent_user_locations"
+  = render partial: "profile_badge", locals: { show_about: true }
+
+.container.container--bottom.container--top
+  .m2-m6.t2-t8.d2-d8
+    .text-center.margin-t
+      - if is_same_user?
+        .margin-bs
+          = link_to("Edit Profile", edit_user_path(current_user), {:class => "btn btn--primary"})
+        div
+          = link_to("Settings", settings_user_path(current_user), {:class => "btn btn--three"})
+        div
+          = render partial: 'communities_list', locals: {user: current_user}
+      - else
+
+        = render partial: "user_friends/profile_follow_form", locals: {can_show_friend_add: true, friend_relationship: @friend_relationship, is_following: (@friend_relationship), user: @user }
+        - if @user_friends
+          .inline-block.margin-r
+            = render partial: "users/manage_lists", locals: {person: @user_friends.first }
+        - if @user.provider('facebook')
+          .inline-block.margin-rs.margin-bs
+            = link_to "Facebook", @user.link, class: "btn btn--facebook btn--fixed", :target => "_blank"
+        = render partial: 'user_contacts/contact_form', locals: {user: @user}
+        = render partial: 'communities_list', locals: {user: @user}
+    .divider.margin-ts
+  .m2-m6.t2-t8.d2-d8
+    .section.text-center
+      - if @user.blurb.blank?
+        - if is_same_user?
+          em You haven't filled out your profile yet! Click the button above to get started.
+      - else
+        = @user.blurb
+      - unless @user.blog_url.blank?
+        .zeta
+          = link_to @user.blog_url, @user.blog_url, :target => "_blank"
+      .zeta
+        = link_to "Following: #{@following_count}", following_user_friends_path(@user.slug)
+        span  &middot;
+        = link_to "Followers: #{@followers_count}", followers_user_friends_path(@user.slug)
+      - if @user_cities.size > 0
+        div.position-relative.margin-ts
+          a.btn.dropdown-toggle data-toggle="dropdown" City Tips (#{@user_cities.size})
+          ul.dropdown-menu.pull-center
+            - @user_cities.each do |user_city|
+              li = link_to(user_city.city.city_state_names, city_tips_path(user_city.city.id, @user.slug))
+    .section.text-center
+      .margin-bs
+        = render partial: 'tags_form', locals: {list: @user.interest_list, list_name: 'interests', list_text: 'Interests', user: @user}
+      .margin-bs
+        = render partial: 'tags_form', locals: {list: @user.non_profits_and_cause_list, list_name: 'non_profits_and_causes', list_text: 'Non Profits & Causes', user: @user}
+      .margin-bs
+        = render partial: 'tags_form', locals: {list: @user.extreme_experience_list, list_name: 'extreme_experiences', list_text: 'Extreme Experiences', user: @user}
+      .margin-bs
+        = render partial: 'tags_form', locals: {list: @user.festival_list, list_name: 'festivals', list_text: 'Festivals', user: @user}
+      .margin-bs
+        = render partial: 'tags_form', locals: {list: @user.favorite_experience_list, list_name: 'favorite_experiences', list_text: 'Favorite Experiences', user: @user}
+  .m-all.t-all.d-all
+    - if (is_same_user? || preference_true?(@user.shows_user_locations.name, @user.shows_user_locations.value))
+      /#tripPagination
+      /= will_paginate(@user_locations)
+      div.check-in-feed.clearfix
+        /- if is_same_user?
+          = render :partial => 'user_locations/add_trip_item'
+        ul.table.trip-table
+          = render partial: 'user_locations/users_trips_containers', locals: {user_locations: @user_locations}
+    - else
+      | #{@user.first_or_last_name} does not have a public checkin history
+
+      /.go-away-for-now
+        h2.section-header Interests
+        .section
+          - if (is_same_user?)
+            = form_for current_user, url: update_tags_user_path(current_user), remote: true do |f|
+              = f.text_field :interest_list, class: "full-width", placeholder: "enter your interests separated by commas"
+              = f.submit "Save my tags", class: "btn"
+          - elsif @user.interest_list.count > 0
+            span
+              #{@user.interest_list}
+        h2.section-header More Stats
+        .section
+          ul
+            li
+              strong Languages:
+              - if  @user.languages.count == 0
+                |  No languages selected
+              - else
+                - @user.languages.each do |language|
+                  #{language.name}
+            li
+              strong First time abroad:
+              |  #{first_time_aborad_profile(@user)}
+            li
+              strong Total countries visited:
+              |  #{@countries_visited.to_a.size}
+            li
+              strong Days traveled the past 12 months:
+              |  #{@total_days_traveled}
+        - unless is_same_user?
+          .contact-widget
+            - if preference_true?(@user.shows_contact_info.name, @user.shows_contact_info.value)
+              h3 Email #{@user.user_name}!
+              = mail_to @user.email, "Contact", :replace_at => "_at_", :replace_dot => "_dot_", :class => "btn epsilon"
+            - twitter_text = "Twitter or " if @user.provider('twitter')
+            p Or follow them on #{twitter_text}Facebook.
+            - if @user.provider('facebook')
+              = link_to(image_tag('contact_facebook.png'), @user.provider('facebook').link, target: 'blank')
+              |
+            - if @user.provider('twitter')
+              = link_to(image_tag('contact_twitter.png'), @user.provider('twitter').link)

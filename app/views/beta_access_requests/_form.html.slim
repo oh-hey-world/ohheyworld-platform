@@ -1,0 +1,11 @@
+= form_for @beta_access_request do |f|
+  - if @beta_access_request.errors.any?
+    #error_explanation
+      h2 = "#{pluralize(@beta_access_request.errors.count, "error")} prohibited this beta_access_request from being saved:"
+      ul
+        - @beta_access_request.errors.full_messages.each do |message|
+          li = message
+
+  .field
+    = f.text_field :email, :placeholder => "Email", class: "input-text text-center full-width margin-b"
+  .actions = f.submit 'Submit', class: "btn btn--primary btn--full"

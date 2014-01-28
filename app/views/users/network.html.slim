@@ -1,0 +1,6 @@
+.alt.privacy.container
+  = label_tag 'Facebook Friends'
+  = radio_button_tag( 'friend_type', 'facebook_friends', true, class: 'friends-map-selector' )
+  = label_tag 'Following'
+  = radio_button_tag( 'friend_type', 'user_friends', false, class: 'friends-map-selector' )
+  #network-map style="height:764px;width:100%"

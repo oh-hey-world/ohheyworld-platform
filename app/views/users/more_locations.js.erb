@@ -1,0 +1,11 @@
+var content = "<%= escape_javascript(render partial: 'user_locations/trips', locals: {user_locations: @user_locations})%>";
+var container = $("#js-user-locations");
+container.append(content);
+var moreLink = $("#js-more-users-locations")
+<% if @user_locations.current_page == @user_locations.total_pages %>
+  moreLink.hide();
+<% else %>
+  var href = moreLink.attr('href');
+  href = href.replace("page=<%= @user_locations.current_page%>", "page=<%= @user_locations.current_page + 1%>")
+  moreLink.attr('href', href);
+<% end %>

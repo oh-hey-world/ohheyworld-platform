@@ -1,0 +1,12 @@
+- @page_title = "About The #{@community.name} Community"
+  
+.community__description.margin-t 
+  h1.gamma About The #{@community.name} Community
+  p #{@community.description}
+  - if user_signed_in? && !@community.has_as_member?(@user)
+    = link_to "Join #{@community.name} Community", join_community_member_path(@community, @user), class: "btn btn--primary pure-button-alert margin-b margin-r"
+  = link_to "Browse Members", @community, class: "btn btn--comp margin-r margin-b"
+  a.btn.cursor--disabled.margin-b href="/" Visit #{@community.name}'s Website
+
+- if user_signed_in? && @community.has_as_admin?(@user)
+  = link_to "Edit", edit_community_path(@community), class: "pure-button"

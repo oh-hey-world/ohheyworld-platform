@@ -1,0 +1,16 @@
+div class="body-container"
+	h3 User Checkins
+	= will_paginate @user_checkins, :param_name => 'checkins_page'
+	ul
+	  - @user_checkins.each do |checkin|
+	    li 
+	      = link_to "#{checkin.user.user_name}", profile_user_path(checkin.user)
+	      |  Checked in 
+	      = link_to "#{checkin.location.name}", [checkin.user, checkin]
+	      |  - #{checkin.created_at.in_time_zone("Pacific Time (US & Canada)").strftime("%B %d, %Y %H:%M %Z")}
+	h3 User Profiles
+	= will_paginate @slugged_users, :param_name => 'users_page'
+	ul
+	  - @slugged_users.each do |user|
+	    li 
+	      = link_to user.user_name, profile_user_path(user)

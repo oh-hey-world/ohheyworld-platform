@@ -1,0 +1,7 @@
+.modal.hide.fade class="check-in-modal-2" id="checkInModalStep2" tabindex="-1" role="dialog" aria-hidden="true"
+  .modal-header
+    h3.center-child id="check-in-label" Send Notifications
+  .modal-body
+    = render partial: "shared/checkin_form_step_2", locals: { location_input: params[:location_input] }
+    a href="#" data-dismiss="modal" class="btn small-screen"
+     | Close

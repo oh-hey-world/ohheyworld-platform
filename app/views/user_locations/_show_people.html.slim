@@ -1,0 +1,8 @@
+.m-all.t-all.d-all
+	= render( :partial => 'user_locations/profile_section', :locals => {:people => @users_at_location_friends.to_a, :header_text => "People You Follow Near #{@current_location.name}", :footer_text => nil, :page_param => 'friends_location_page', :show_no_results => false, can_show_friend_add: false} )
+.m-all.t-all.d-all
+	= render( :partial => 'user_locations/profile_section', :locals => {:people => @provider_friends, :header_text => "Facebook Friends Living Near #{@current_location.name}", :footer_text => 'You do not have any friends that live in', :page_param => 'friends_page', :show_no_results => true, can_show_friend_add: false} )
+.m-all.t-all.d-all
+	= render( :partial => 'user_locations/profile_section', :locals => {:people => @users_at_location.to_a, :header_text => "Everyone Checked-in nearby #{@current_location.name}", :footer_text => 'There are currently no other travelers in', :page_param => 'location_page', :show_no_results => true, can_show_friend_add: true} )
+.m-all.t-all.d-all
+	= render( :partial => 'user_locations/profile_section', :locals => {:people => @facebook_friends_of_friends_page.to_a, :header_text => "Friends of Facebook Friends Living Nearby #{@current_location.name}", :footer_text => 'There are currently no friends of Facebook friends that live in', :page_param => 'facebook_friends_of_friends_page', :show_no_results => true, can_show_friend_add: false} )

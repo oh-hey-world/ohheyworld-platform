@@ -1,0 +1,72 @@
+- if @user_location.private
+  .container Undisclosed Location
+- else
+  .container
+    = render partial: "user_locations/city_locations"
+    .m-all.t-all.d-all
+      .overlay.overlay-city.text-center
+        h1.beta.tight #{@current_location.name}
+  .container.container--padded.container--bottom
+    / Hid current_user.is_allowed_content_creation? since functionality restriction only needs to be handled in
+    / user_city_location partial, and it removed entire comments form for all Standard users
+    - if current_user # && current_user.is_allowed_content_creation?
+      .m2-m6.t2-t8.d2-d8
+        .city-checkin-item.zeta.margin-b
+          .media.margin-rs.margin-ls.margin-bs
+            .media__img.city-checkin-item__avatar.margin-rs
+              = link_to(profile_user_path(@user)) do
+                = image_tag( @user.profile_picture_url('?width=96&height=96'))
+            .media__body
+              = link_to(profile_user_path(@user)) do
+                strong #{@user.user_name}
+              span &nbsp;checked in to #{@current_location.name}
+              div
+                | with
+                - @user_location.user_location_tagged_users.each do |user_location_tagged_user|
+                  span
+                    |
+                    - if user_location_tagged_user.user
+                      - user = user_location_tagged_user.user
+                      = user.user_name
+                    - elsif user_location_tagged_user.provider_friend
+                      - provider_friend = user_location_tagged_user.provider_friend
+                      = provider_friend.user_name
+              div.darkgray Tags: #{@user_location.tag_list}
+            / Hid this because the like_checkin partial also includes comments_form
+            / = render partial: 'comments_form', locals: {user_location: @user_location, comment: @comment}
+          .city-checkin-item__img-wrap.margin-bs
+            = render partial: 'user_location_assets', locals: {user_location: @user_location}
+          = render partial: "user_locations/like_checkin", locals: {user_location: @user_location, default_open: true}
+    = render partial: "user_city_location"
+
+  /.go-away-for-now
+    .alt.container
+      .row
+        .seven.column
+          h1.beta
+            | #{@user.user_name} traveled to #{@current_location.name}
+            - if @prior_user_location
+              |  from #{@prior_user_location.location.name}!
+            - else
+              | !
+          br
+          | Checked in on #{@user_location.created_at.strftime("%B %-d, %Y")}
+          - if @prior_user_location
+            br
+            | Previous Stop: #{link_to @prior_user_location.location.name, [@user, @prior_user_location]} from #{@prior_user_location.created_at.strftime('%-m/%-d')} -  #{@prior_user_location.ended_at.strftime('%-m/%-d')}
+          - if @next_user_location
+            br
+            | Next Stop: #{link_to @next_user_location.location.name, [@user, @next_user_location]} on #{@next_user_location.created_at.strftime('%-m/%-d')}
+            - if @next_user_location.ended_at
+              |  -  #{@next_user_location.ended_at.strftime('%-m/%-d')}
+          /TODO add people seen
+        .five.column
+          = render partial: "users/profile_badge", locals: {show_about: false}
+          = link_to "See #{@user.user_name} travel profile", profile_user_path(@user)
+
+    .sec.container
+      .row
+        - if @recent_locations
+          | #{@user.user_name}'s recent travels
+          = render(:partial => 'trips', locals: {user_locations: @recent_locations})
+        = link_to "More of #{@user.first_or_last_name}'s travels", profile_user_path(@user)

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+</head>
+<body>
+  <p><%= @user.user_name%> has invited you to join Oh Hey World.</p>
+  <p>
+    Oh Hey World is changing the way travelers create meaningful connections on the road. We're also the simplest way to follow the travels of those you care about and connect you to people with shared experiences and interests via a centralized dashboard.
+  </p>
+  <p>
+    Sign up in order to connect with your friends, manage all your notification preferences from one location.
+  </p>
+  <p>
+    And though we're still in beta, since you're in the know (thanks to an invite from <%= @user.user_name%>), you don’t have to stand in line -- simply follow this link and we’ll have you signed up in no time: http://<%= BASE_URL %>?registration_code=28855468-1aa8-4de0-a105-19422faa2b71
+  </p>
+  <p>
+    - The Oh Hey World Team
+  </p>
+</body>
+</html>

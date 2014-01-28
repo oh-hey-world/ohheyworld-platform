@@ -1,0 +1,47 @@
+span
+  - checkin_comments = user_location.root_comments
+  - form_comment = (comment) ? comment : Comment.build_from(user_location, current_user.id, "")
+  = link_to "#{checkin_comments.size} Comments", "#", class: "js-comments btn btn--small btn--three zeta"
+- comment_style = (@comments_closed) ? 'display:none' : ''
+.js-comments-container style="#{comment_style}"
+  ul.tight
+  - checkin_comments.each do |comment|
+    - user = comment.user
+    li.comment.media.margin-ts
+      .media__img.comment__img
+        = link_to(profile_user_path(user)) do
+          = image_tag( user.profile_picture_url('?width=96&height=96'))
+      .media__body    
+        = link_to(profile_user_path(user)) do  
+          strong 
+            = user.user_name
+        span.darkgray
+          |  on 
+          = standard_display_date(comment.created_at)  
+          br  
+        span #{comment.body}
+      - if !comment.link_name.blank? && !comment.link_value.blank?
+        = link_to comment.link_name, comment.link_value
+      .text-right  
+        = form_for comment, url: {controller: 'user_locations', action: "like_comment", id: comment.id}, html: {class: 'js-comment-like-form'}, remote: true do |f|
+          = f.hidden_field :id
+          = button_tag(:remote => true, :class => "btn btn--small btn--three") do
+            .js-comment-like.inline-block #{comment.likes.size}
+            span &nbsp;
+            span.icon--tight aria-hidden="true" data-icon="&#xe014;"
+  - open_style = (default_open) ? '' : 'display:none'
+  = form_for form_comment, url: {controller: "user_locations", action: "add_comment", id: user_location.id}, html: { style: open_style } do |f|
+    = render partial: "shared/errors", locals: {errors: form_comment.errors}
+    = f.text_area :body, rows: '5', class: "full-width margin-bs input-text margin-ts", placeholder: "Have a recommended activity, event, or person to meet? Leave a comment..."
+    /= f.label :link_name
+    /= f.text_field :link_name
+    /= f.label :link_value
+    /= f.text_field :link_value
+    /= f.hidden_field :id
+    /= f.check_box :private
+    /span class="checkbox__btn" data-off-icon="&#xe011;" data-on-icon="&#xe00f;"
+    = f.hidden_field :commentable_id
+    = f.hidden_field :commentable_type
+    = f.hidden_field :user_id
+    .text-right
+      = f.submit "Comment", class: "btn btn--primary"

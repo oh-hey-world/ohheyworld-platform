@@ -1,0 +1,12 @@
+p#notice = notice
+
+p
+  strong User:
+  = @user_city.user_id
+p
+  strong City:
+  = @user_city.city_id
+
+= link_to 'Edit', edit_user_city_path(@user_city)
+'|
+= link_to 'Back', user_cities_path

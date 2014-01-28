@@ -1,0 +1,41 @@
+li.grid-item.js-trip-item
+  = link_to([@user, user_location], {:class => "trip-read-only"}) do
+    = image_tag("/assets/default_city.jpg", :alt => '')
+    span.zeta.overlay.overlay-small.text-center
+      | #{user_location.name}
+      br
+      = "Residence" if (user_location.residence)
+  - if is_same_user?
+    = form_for user_location, url: user_user_location_update_privacy_path(@user, user_location), method: :put, class: 'js-privacy-update-form', remote: true do |f|
+      label class="checkbox checkbox--privacy grid-item__tl-btn"
+        = f.hidden_field :id
+        = f.check_box :private, class: 'checkbox__check js-privacy-update'
+        span class="checkbox__btn" data-off-icon="&#xe011;" data-on-icon="&#xe00f;"
+      a.grid-item__tr-btn.js-trip-edit href="#"
+        span &#9662;
+      /- if (user_location.ended_at)
+          |  -
+          span.ended-at #{user_location.ended_at.strftime('%m/%d/%G')}
+        - if is_same_user?
+          .trip-options.dropdown
+            a class="dropdown-toggle" id="dLabel" role="button" data-toggle="dropdown" data-target="#" href="#"
+              |
+              b class="caret"
+            ul class="dropdown-menu dropdown-menu--plain pull-right" role="menu"
+              li
+                a href="#" class="trip-edit" Edit
+  .grid-item__menu.js-trip-edit-dialog.zeta.hide
+    = form_for user_location do |f|
+      .text-center
+        = f.text_field :created_at, value: standard_display_date(f.object.created_at), class: "user-profile-edit-input user-edit-created-at full-width input-text"
+        |  until 
+        = f.text_field :ended_at, value: (f.object.ended_at) ? standard_display_date(f.object.ended_at) : ENDED_AT_DEFAULT, class: "user-profile-edit-input user-edit-ended-at full-width margin-bs input-text"
+      = f.hidden_field :user_id
+      = f.label :residence, class: "inline-block"
+      = f.check_box :residence, class: "margin-b"
+      = hidden_field_tag "page", params[:page]
+    .align-right
+      a href="#" class="trip-edit-save btn btn--small btn--full btn--primary save-edit-trip margin-bs" Save
+      a href="#" class="js-trip-edit-cancel btn btn--small btn--full btn--comp margin-bs" Cancel
+      = link_to user_location, method: :delete, remote: true, class: "trip-delete" do
+        span.btn.btn--small.btn--full Delete

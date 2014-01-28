@@ -1,0 +1,2 @@
+module UserCityTipsHelper
+end

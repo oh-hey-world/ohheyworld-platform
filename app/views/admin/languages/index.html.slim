@@ -1,0 +1,18 @@
+h1 Listing languages
+
+table
+  tr
+    th
+    th
+    th
+
+  - @languages.each do |language|
+    tr
+      td = language.name
+      td = link_to 'Show', [:admin, language]
+      td = link_to 'Edit', edit_admin_language_path(language)
+      td = link_to 'Destroy', [:admin, language], :confirm => 'Are you sure?', :method => :delete
+
+br
+
+= link_to 'New Language', new_admin_language_path

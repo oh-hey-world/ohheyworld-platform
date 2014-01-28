@@ -1,0 +1,40 @@
+.container.container--padded.container--push-footer
+  .m2-m6.t3-t7.d3-d7
+      - if @errors
+        #error_explanation
+          h2 = "#{pluralize(@errors.count, "error")} prohibited this record from being saved:"
+          ul
+            - @errors.full_messages.each do |message|
+              li = message
+      .margin-b
+        h2.gamma Interest Notifications
+        p Enter keywords below and you'll receive emails or texts when another user with the same interests lands near you.        
+        = form_for @user, url: update_tag_notifications_user_path(@user) do |f|
+          = f.fields_for :user_tag_notifications do |field|
+            - if field.object.new_record?
+              = field.text_field :tag, class: "input-text full-width", placeholder: "Enter new tag"
+              .margin-bs  
+                - unless @user.phone.blank?
+                  label.inline-block.margin-rs
+                    | SMS
+                  = field.check_box :sms, checked_preference('sms_close_following', current_user.sms_close_following.value)
+                label
+                  | Email
+                  = field.check_box :email, checked_preference('email_close_following', current_user.email_close_following.value)
+          = f.submit "Add", class: "btn btn--three btn--full margin-b"
+      = form_for @user, url: update_tag_notifications_user_path(@user) do |f|
+        = f.fields_for :user_tag_notifications do |field|
+          - unless field.object.new_record?
+            = field.text_field :tag, class: "input-text full-width"
+            .margin-b
+              - unless @user.phone.blank?
+                label.inline-block.margin-rs
+                  | SMS
+                  = field.check_box :sms
+              label.inline-block.margin-rs
+                | Email
+                = field.check_box :email
+              label.inline-block.margin-rs
+                | Delete
+                = field.check_box :_destroy
+        = f.submit "Update", class: "btn btn--primary btn--full"

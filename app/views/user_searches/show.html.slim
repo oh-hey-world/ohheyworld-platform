@@ -1,0 +1,18 @@
+.container
+  = render partial: "user_locations/city_locations"
+  .m-all.t-all.d-all
+    .overlay.overlay-city.text-center
+      h1.beta.tight #{(@current_location) ? @current_location.name : @last_user_search.user_input}
+
+.container.container--padded.container--bottom
+  .m2-m6.t4-t6.d4-d6
+    = render partial: "user_cities/links", locals: {location: (@current_location) ? @current_location : @user_location.location, total_tips_for_city: @total_tips_for_city}
+    - if current_user && current_user.is_allowed_content_creation?
+      a.btn.btn--three.btn--full.margin-bs.js-button-open href="#"
+        | Add City Tips
+      .js-button-get-opened.transition.reveal-vert
+        = render partial: 'user_cities/mini_form', locals: {user_city: @user_city, user_city_tip: @user_city_tip}
+        = render partial: 'user_city_tips/mini_form', locals: {user_city: @user_city, user_city_tip: @user_city_tip}
+  - if @current_location
+	  = render partial: "user_locations/show_people"
+  = render partial: "user_searches/users_links_container", locals: {users: @users_with_tags}

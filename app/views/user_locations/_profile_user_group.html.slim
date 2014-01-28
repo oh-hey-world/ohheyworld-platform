@@ -1,0 +1,5 @@
+- if (people)
+  - left = people[ 0, ( people.size / 2.0 ).round ]
+  - right = people - left
+  - [left, right].each do |group|
+    = render( :partial => 'user_locations/profile_group', :locals => {:group => group, :user_location => @user_location, user_friends: @user_friends_at_location, can_show_friend_add: can_show_friend_add} )

@@ -1,0 +1,85 @@
+.container
+  = render partial: "user_locations/city_locations"
+  .m-all.t-all.d-all
+    .overlay.overlay-city.text-center
+      h1.beta.tight #{@current_location.name}
+    /= render partial: "show_notifications", locals: {user_location: @user_location}
+.container.container--bottom.container--padded
+  .m2-m6.t2-t8.d2-d8
+    .city-checkin-item.zeta.margin-b
+      .media.margin-rs.margin-ls.margin-bs
+        .media__img.city-checkin-item__avatar.margin-rs
+          = link_to(profile_user_path(@user)) do
+            = image_tag( @user.profile_picture_url('?width=96&height=96'))
+        .media__body
+          = link_to(profile_user_path(@user)) do
+            strong #{@user.user_name}
+          span  checked in to #{@current_location.name}
+          div
+            | with 
+            - @user_location.user_location_tagged_users.each do |user_location_tagged_user|
+              span.user-tag.inline-block.margin-rs
+                |  
+                - if user_location_tagged_user.user
+                  - user = user_location_tagged_user.user
+                  = user.user_name 
+                - elsif user_location_tagged_user.provider_friend
+                  - provider_friend = user_location_tagged_user.provider_friend
+                  = provider_friend.user_name  
+          /div.darkgray Tags: #{@user_location.tag_list}
+      .city-checkin-item__img-wrap.margin-bs      
+        = render partial: 'user_location_assets', locals: {user_location: @user_location}
+      .text-right.margin-rs.margin-ls.margin-bs
+        a.btn.btn--small.btn--three.js-city-checkin-item__edit-button href="#" Edit
+      .city-checkin-item__edit.js-city-checkin-item__edit.margin-rs.margin-ls
+        .clearfix
+          = text_field_tag 'user-tag-typeahead', nil, class: "input-text m-all margin-bs", placeholder: 'Tag a friend'
+        .js-users-tagged
+          - @user_location.user_location_tagged_users.each do |user_location_tagged_user|
+            .inline-block.margin-rs.margin-bs.darkgray.zeta.user-tag
+              - if user_location_tagged_user.user
+                .js-tagged-user-container
+                  - user = user_location_tagged_user.user
+                  = user.user_name
+                  span &nbsp;
+                  = link_to 'x', user_location_tagged_user, method: :delete, remote: true
+                  /= link_to(profile_user_path(user)) do
+                    = image_tag user.picture_url
+              - elsif user_location_tagged_user.provider_friend
+                .js-tagged-user-container
+                  - provider_friend = user_location_tagged_user.provider_friend
+                  = provider_friend.user_name
+                  span &nbsp;
+                  = link_to 'x', user_location_tagged_user, method: :delete, remote: true
+                  /= link_to(provider_friend.link) do
+                    = image_tag provider_friend.picture_url
+        = form_for @user_location_tagged_user, html: {class: 'js-user-tag-form', :'data-type' => 'json'}, remote: true do |f|
+          = f.hidden_field :user_location_id
+          = f.hidden_field :user_id, class: 'js-user-tag-id'
+          = f.hidden_field :provider_friend_id, class: 'js-provider-friend-tag-id'      
+        = form_for @user_location, html: { multipart: true } do |f|
+          .margin-bs
+            span Attach a photo: 
+            = f.fields_for :user_location_assets, @user_location.user_location_assets.build(default: true) do |field|
+              = field.file_field  :asset 
+          /.margin-bs    
+            - checkin_type = (@user_location.residence) ? "Residence" : "Travel"
+            | Check-in Type: #{checkin_type}
+            = f.check_box :residence
+          .clearfix 
+            /= f.text_field :tag_list, class: "input-text margin-rs margin-bs m-all", placeholder: 'Check-in keywords'
+            /br
+            = f.submit "Save", class: "btn btn--small btn--three margin-bs margin-rs m-all"
+            a.btn.btn--small.margin-bs.m-all.js-city-checkin-item__edit-cancel href="#" Cancel
+        = hidden_field_tag 'js-user-location', params[:id]
+        /.fb-user-advice-form
+          = form_for current_user.user_provider_friends.build, url: ask_for_advice_user_location_path(@user_location), remote: true, html: {class: 'fb-friend-ask'} do |f|
+            = f.email_field :email, :placeholder => "Enter their email and we'll ask them.", class: 'fb-friend-email-advice input-text margin-rs m-all'
+            = f.submit "Send", class: 'fb-friend-advice-submit btn btn--small btn--comp m-all'
+      div
+        = render partial: "user_locations/like_checkin", locals: {user_location: @user_location, default_open: true}
+  .m2-m6.t4-t6.d4-d6
+		= link_to "Send Notifications", user_user_location_notifications_path(current_user.slug, @user_location.slug), class: "btn btn--primary btn--full margin-b"
+  = render partial: "user_city_location"
+
+/= link_to "See everyone in the #{@user_location.location.country_name}", country_state_user_location_path(@user_location.slug, @user_location.location.country_id)

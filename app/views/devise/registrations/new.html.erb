@@ -1,0 +1,25 @@
+<div class="container container--padded">
+	<div class="m2-m6 t4-t6 d4-d6">
+
+  	<h1 class="text-center gamma">Create An Account</h1>
+  <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
+    <%= devise_error_messages! %>
+
+    <p class="zeta">Oh Hey World is currently in open beta. We're constantly hunting down bugs and tweaking features, so if you notice anything broken please let us know.</p>
+
+    <div class="margin-b"><%= f.label :email %><%= f.email_field :email, :class => "input-text full-width" %></div>
+
+    <div class="margin-b"><%= f.label :password %><%= f.password_field :password, :class => "input-text full-width" %></div>
+
+    <div class="margin-b"><%= f.label :password_confirmation, "Confirm Password" %><%= f.password_field :password_confirmation, :class => "input-text full-width" %></div>
+
+    <div class="margin-b hide"><%= label_tag 'registration_code' %><%= text_field_tag 'registration_code', session[:registration_code], :class => "input-text full-width" %></div>
+
+    <div><%= f.submit "Sign up", :class => "btn btn--primary margin-b full-width" %></div>
+  <% end %>
+
+  	<div class="zeta">
+  		<%= render :partial => "devise/shared/links" %>
+  	</div>
+  </div>
+</div>

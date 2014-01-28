@@ -1,0 +1,8 @@
+= form_for @new_user_search, html: {class: 'js-search-form'} do |f|
+	.nav-mobile-search-field
+	  /= f.error_messages
+	  = f.text_field :user_input, placeholder: 'Search for a city or interest…', id: 'js-city-tag-search', class: "input-text nav-mobile-search full-width zeta"
+	  span aria-hidden="true" data-icon="&#xe005;" class="zeta input-search-icon"
+	  = hidden_field_tag 'search_id', nil, class: 'search-value-id'
+	  = hidden_field_tag 'search_type', nil, class: 'search-type'
+	  = f.hidden_field :user_id

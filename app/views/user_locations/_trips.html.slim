@@ -1,0 +1,3 @@
+- if user_locations
+  - user_locations.each do |user_location|
+    = render :partial => 'user_locations/trip_item', locals: { user_location: user_location }

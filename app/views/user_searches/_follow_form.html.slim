@@ -1,0 +1,9 @@
+- if current_user && can_show_friend_add
+	.text-right
+	  - button_text = (friend_relationship) ? "Unfollow" : "Follow"
+	  - button_class = (friend_relationship) ? "btn btn--small" : "btn btn--small btn--primary"
+	  = form_for current_user.user_friends.build(friend_id: user.id), remote: true, html: {class: 'follow-friend'} do |f|
+	    = f.hidden_field :user_id
+	    = f.hidden_field :friend_id
+	    = f.hidden_field :tag_list, class: 'tag-list'
+	    = f.submit button_text, class: button_class, id: 'friend-submit'

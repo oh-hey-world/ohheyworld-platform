@@ -1,0 +1,15 @@
+- if user_city
+  = form_for user_city do |f|
+    = f.hidden_field :user_id
+    = f.hidden_field :city_id
+    = label_tag :staff_city
+    = check_box_tag :staff_city, 1, params[:staff_city], class: "js-staff-city"
+    = f.label :summary
+    = f.text_area :summary, class: "margin-bs input-text full-width", placeholder: "Enter a new city summary here…", rows: '10'
+    = f.label :tags, class: 'text-center'
+    .field
+      = f.text_field :tag_list, class: 'field margin-bs input-text full-width'
+    = f.label :expertise, class: 'text-center'
+    .field
+      = f.text_field :expertise_list, class: 'margin-bs input-text full-width'
+    .actions.text-center = f.submit 'Save', class: "btn btn--three btn--fixed margin-b"

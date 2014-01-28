@@ -1,0 +1,176 @@
+<!doctype html>
+<!--[if lt IE 9]><html class="ie"><![endif]-->
+<!--[if gte IE 9]><!--> <html lang="en"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+  <title>Oh Hey World</title>
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <meta name="viewport" content="width=device-width">
+  <link href='http://fonts.googleapis.com/css?family=Bitter:400,700' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="style.css">
+
+
+  <!--[if lt IE 9]>
+  <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+
+</head>
+<body>
+  <!-- Prompt IE 6 users to install Chrome Frame. Remove this if you support IE 6.
+       chromium.org/developers/how-tos/chrome-frame-getting-started -->
+  <!--[if lt IE 7]><p class=chromeframe>Your browser is <em>ancient!</em> <a href="http://browsehappy.com/">Upgrade to a different browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.</p><![endif]-->
+
+<header class="nav-bar container">
+  <div class="row">
+    
+    <div class="three column">
+      <h1 class="visuallyhidden">Oh Hey World</h1>
+      <h2 class="visuallyhidden">Your Social Passport</h2>
+      <img src="img/logo_no_slogan.png" alt="">
+    </div>
+
+    <div class="eight column offset-by-one">
+      <nav class="nav main-nav">
+        <ul>
+          <li><a href="#">Profile</a></li>
+          <li><a href="#">Check In</a></li>
+          <li><a href="#">Blog</a></li>
+        </ul>
+      </nav>
+      <nav class="nav login-nav">
+        <ul>
+          <li class="avatar">
+            <a href="#"><img src="img/avatar_17.png" alt="">Hi, <strong>Andy</strong></a>
+            <ul class="dropdown">
+              <li><a href="#">User Settings</a></li>
+              <li><a href="#">Privacy Settings</a></li>
+              <li><a href="#">Link 1</a></li>
+              <li><a href="#">Link 2</a></li>
+            </ul>
+          </li>
+          <li><a href="#"><strong>Sign Out</strong></a></li>
+        </ul>
+      </nav>
+      <nav class="nav social-nav">
+        <ul>
+          <li><a href="#"><img src="img/like.png" alt=""></a></li>
+          <li><a href="#"><img src="img/gplus.png" alt=""></a></li>
+        </ul>
+      </nav>
+    </div>
+
+  </div>
+</header>
+
+<div class="alt container">
+
+  <div class="row">
+
+    <div class="eight column offset-by-two">
+     <h1>User Settings</h1>
+      <h2 class="section-header">Notification Defaults</h2>
+      <div class="section">
+        <p>NOTE: You can turn each of these on/off per individual check in from the check in screen.</p>
+
+        <form class="radio-group" action="">
+
+          <div class="radio-option">
+            <span class="title">Facebook</span>
+            <label><input name="Facebook" type="radio" checked="yes">On</label>
+            <label><input name="Facebook" type="radio">Off</label>
+          </div>
+
+          <div class="radio-option">
+            <span class="title">Twitter</span>
+            <label><input name="Twitter" type="radio" checked="yes">On</label>
+            <label><input name="Twitter" type="radio">Off</label>
+          </div>
+
+          <div class="radio-option">
+            <span class="title">SMS</span>
+            <label><input name="SMS" type="radio" checked="yes">On</label>
+            <label><input name="SMS" type="radio">Off</label>
+          </div>
+
+          <div class="radio-option">
+            <span class="title">Email</span>
+            <label><input name="Email" type="radio" checked="yes">On</label>
+            <label><input name="Email" type="radio">Off</label>
+          </div>
+
+        </form>
+      </div><!-- end section -->
+
+      <h2 class="section-header">Twitter Authentication</h2>
+      <div class="section">
+        <img class="center" src="img/auth_twitter.png" alt="">
+      </div><!-- end section -->
+
+      <h2 class="section-header">Facebook Authentication</h2>
+      <div class="section">
+        <img class="center" src="img/auth_facebook.png" alt="">
+      </div><!-- end section -->
+
+      <h2 class="section-header">Email Notifications</h2>
+      <div class="section">
+        <a href="#" class="btn btn-small">+Add New</a>
+        <form class="notify-form" action="">
+          <input class="notify-form-name" type="text" placeholder="Dad"><input class="notify-form-value" type="text" placeholder="dad@email.com"><a href="#">edit</a>
+          <input class="notify-form-name" type="text" placeholder="Mom"><input class="notify-form-value" type="text" placeholder="mom@email.com"><a href="#">edit</a>
+        </form>
+      </div><!-- end section -->
+
+      <h2 class="section-header">SMS Notifications</h2>
+      <div class="section">
+        <a href="#" class="btn btn-small">+Add New</a>
+          <form class="notify-form" action="">
+          <input class="notify-form-name" type="text" placeholder="Mom"><input class="notify-form-value" type="text" placeholder="1-425-555-3821"><a href="#">edit</a>
+        </form>
+      </div><!-- end section -->
+
+
+    </div>
+  </div><!-- end row -->
+</div><!-- end container -->
+
+<footer class="footer container">
+  <div class="row">
+
+    <div class="twelve column">
+
+      <nav class="nav footer-nav">
+        <ul>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Travel Blog</a></li>
+          <li><a href="#">Track Your Travel Expenses</a></li>
+          <li><a href="#">Jobs</a></li>
+          <li><a href="#">Give Feedback</a></li>
+        </ul>
+      </nav>
+
+    </div>
+
+    <div class="twelve column">
+
+      <span>&copy; Oh Hey World 2012</span>
+
+    </div>
+
+  </div><!-- end row -->
+</footer>
+  
+
+  <!-- Asynchronous Google Analytics snippet. Change UA-XXXXX-X to be your site's ID.
+       mathiasbynens.be/notes/async-analytics-snippet -->
+  <script>
+    var _gaq=[['_setAccount','UA-16915071-1'],['_trackPageview']];
+    (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+    g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+    s.parentNode.insertBefore(g,s)}(document,'script'));
+  </script>
+</body>
+</html>

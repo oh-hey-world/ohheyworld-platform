@@ -1,0 +1,52 @@
+$('.trip-table').html("<%= escape_javascript(render(:partial => 'trips', locals: {user_locations: @user_locations, same_user: is_same_user?}))%>");
+//$("#tripPagination").text("");
+//var userId = '<%= current_user.slug%>';
+//var replaced = "<%= escape_javascript(will_paginate @user_locations)%>"
+//replaced = replaced.replace(/user_locations/g, userId + "/profile");
+//replaced = replaced.replace(/profile\/.*?\?/g, "profile?");
+//$("#tripPagination").append(replaced);
+
+$('input.ui-datepicker').datepicker();
+
+$('.trip-edit').click(function() {
+  event.preventDefault();
+  return $(this).parents('.trip-info').toggleClass('hide').siblings('.trip-edit-dialog').toggleClass('hide');
+});
+
+$('.trip-edit-cancel').click(function() {
+	event.preventDefault();
+  return $(this).parents('.trip-edit-dialog').toggleClass('hide').siblings('.trip-info').toggleClass('hide');
+});
+
+$('.edit-trip').click(function() {
+  var editPane, savePane;
+  editPane = $(this).parent().parent();
+  editPane.hide();
+  savePane = editPane.parent().next();
+  savePane.show();
+  return false;
+});
+
+$('.cancel-edit-trip').click(function() {
+  var tripItem;
+  tripItem = $(this).parent().parent();
+  showHideEditPanes(tripItem);
+  return false;
+});
+
+$('.save-edit-trip').click(function() {
+  $(this).parent().prev().submit()
+  false;
+  $(".edit_user_location")
+		.bind("ajax:success", function(event, data) {
+  		var tripItem;
+    	tripItem = $(this).parent().parent();
+			return showHideEditPanes(tripItem);
+		})
+    .bind("ajax:error", function(event, data) {
+    	alert('There was an error saving your change.  Please try again later.');
+		})
+});
+
+
+

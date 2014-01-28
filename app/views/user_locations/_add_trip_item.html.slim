@@ -1,0 +1,14 @@
+.check-in-feed-new-item.dropdown
+  = form_for @new_user_location, remote: true do |f|
+    = f.error_messages
+    = f.fields_for :location, Location.new do |location|
+      = location.text_field :user_input, placeholder: 'Add new trip…', class: "check-in-feed-new-item-city full-width checkin-text", autocomplete: 'off'
+    .dropdown-menu.check-in-feed-new-item-dropdown
+      = f.text_field :created_at, placeholder: 'Arrive', class: "ui-datepicker user-profile-edit-input user-edit-created-at check-in-feed-new-item-start" 
+      | until 
+      = f.text_field :ended_at, placeholder: 'Depart', class: "ui-datepicker user-profile-edit-input user-edit-ended-at check-in-feed-new-item-end"
+      = f.check_box :residence
+      = f.label :residence, class: "check-in-feed-new-item-residence tight"
+      = f.hidden_field :user_id
+      = hidden_field_tag "page", params[:page]
+      = f.submit "+Add a trip", class: "btn btn-small align-right tight"

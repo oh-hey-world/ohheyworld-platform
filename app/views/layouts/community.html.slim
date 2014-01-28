@@ -1,0 +1,68 @@
+doctype html
+/[if lt IE 9]
+  | <html class="ie" xmlns:fb="http://www.facebook.com/2008/fbml">
+| <!--[if gte IE 9||!(IE)]<!-->
+html lang="en" xmlns:fb="http://www.facebook.com/2008/fbml"
+  | <!--<![endif]-->
+
+  = render "shared/header"
+  = javascript_include_tag "application"
+  body.community
+    .community__nav-bar
+      .community__wrapper
+        - if request.fullpath == community_path(@community)
+          li = link_to "The #{@community.name} Community", @community
+        - else
+          li = link_to "◀ Return to #{@community.name}", @community
+    
+    .community__wrapper
+      .community__sidebar
+        .community__brand
+          = link_to community_path(@community) do
+            = image_tag @community.brand.url
+          h1.delta.tight = link_to community_path(@community) do
+            = @community.name
+          = @community.tagline
+
+          div.zeta.margin-b
+            strong = "#{@community.members.length} members #{locations_number}"
+
+          ul#entity-menu.community__brand__menu
+            - if user_signed_in?
+              - if @community.has_as_member?(@user)
+                li= link_to "Organize the #{@community.name} community", detail_community_path(@community) if @community.has_as_admin?(@user)
+                /li= link_to "The #{@community.name} Story", detail_community_path(@community) unless @community.has_as_admin?(@user)
+                li= link_to "Edit your #{@community.name} profile", edit_community_member_path(@community, @member)
+                li= link_to "Leave this community", community_member_path(@community, @member), method: :delete, confirm: "Are you sure you want to leave? You'll be able to rejoin in the future."
+            li = link_to "About #{@community.name}", detail_community_path(@community)
+            li = link_to "Invite Potential Members", invite_community_members_path(@community)
+
+        - if notice || alert
+          = notice
+          = alert
+        
+        - if user_signed_in?
+          h5.tight Community pages are currently in BETA.
+          p 
+            = link_to "Learn more about their status.", "/communities_beta"
+
+        - if !user_signed_in?
+          p 
+            = link_to "Learn more about Oh Hey World community pages.", "/community_pages"
+          h5
+            - unless user_signed_in?
+              p Already a member? #{link_to "Sign in", new_user_session_path} to get access.
+      
+      .community__main
+        = yield
+
+
+    .community__footer
+      .community__wrapper.text-center
+          .community__footer-nav
+            a href="/community_pages_community_builders" For Community Builders
+            |  | 
+            a href="/feedback" Feedback
+          .zeta Powered by         
+          a href="/"
+            = image_tag "logo_no_slogan.png", class: "logo nav-bar-logo"

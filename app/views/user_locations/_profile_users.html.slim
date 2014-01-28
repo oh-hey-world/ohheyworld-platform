@@ -1,0 +1,16 @@
+- if people.size > 0
+  ul.clearfix id="people-container-#{page_param}"
+    = render( partial: 'user_locations/profile_user_group', locals: {people: people, can_show_friend_add: can_show_friend_add} )
+  - if people.current_page < people.total_pages
+    .m3-m5.t4-t6.d4-d6
+      - if (controller.class == UserLocationsController)
+        = link_to "See More", {controller: "user_locations", action: "more_friends", page_param: page_param, id: params[:id], page: people.current_page + 1}, {remote: true, id: "js-more-people-#{page_param}", class: 'btn btn--full margin-b'}
+    	- else
+        = link_to "See More", {controller: "user_searches", action: "more_friends", page_param: page_param, id: params[:id], page: people.current_page + 1}, {remote: true, id: "js-more-people-#{page_param}", class: 'btn btn--full margin-b'}
+- else
+		- if page_param == 'friends_page' && !current_user.provider_valid?('facebook')
+				  p We couldn't find any of your friends near #{@current_location.name}. You're way too popular for that to be right. Connect your Facebook account, it will help us find more people.
+				  .m2-m6.t4-t6.d4-d6	
+					 = link_to("Facebook",'', id: "facebook-login-settings", class: "btn btn--facebook btn--full margin-b")
+		- else
+  		p #{footer_text} #{@current_location.name}.

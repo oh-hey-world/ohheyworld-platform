@@ -1,0 +1,8 @@
+-if current_user.provider_valid?('facebook')
+	- unless current_user.import_job_finished?
+	  label.ad-bar
+	    = check_box_tag "Yes", 1, false, id: "import_friends", class:  "visuallyhidden"
+	    div 
+	    	strong New here? 
+	    	span Import friends to see more 
+	    	span.zeta &#9654;	    	

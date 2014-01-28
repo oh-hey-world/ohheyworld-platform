@@ -1,0 +1,37 @@
+- if user_location.posts?
+  p 
+    - emails = user_location.sent_snapshot[:emails]
+    - smss = user_location.sent_snapshot[:smss]
+    - has_smss = (smss && smss.count > 0)
+    - has_email = (emails && emails.count > 0)
+    - if has_email
+      | An e-mail was sent to #{emails.map{ |x| "#{x[:name]} (#{x[:value]})"}.join(", ")}
+      - if has_smss
+        |  and 
+    - if has_smss
+      | a text message was sent to #{smss.map{ |x| "#{x[:name]} (#{x[:value]})"}.join(", ")}
+    |  notifying them of your safe arrival.
+- if @user.completed_first_checkin
+  ul
+    - twitter_posted = user_location.posted_to_twitter?
+    - facebook_posted = user_location.posted_to_facebook?
+    - if (twitter_posted || facebook_posted)
+      li 
+        | Your check in was broadcasted to 
+        - if twitter_posted
+          = link_to "Twitter", @user.provider('twitter').link
+          - if facebook_posted
+            |  and 
+        - if facebook_posted
+          = link_to "Facebook", @user.provider('facebook').link
+        | .
+    /    - if @user.provider('facebook').failed_post_deauthorized
+    /      | You have not authorized the OhHeyWorld application to post to Facebook
+    /    - elsif @user.provider('facebook').failed_app_deauthorized
+    /      | You have deauthorized the OhHeyWorld application on Facebook
+    - if @last_time_visited
+      li You were last here in #{@last_time_visited.created_at.strftime("%B of %Y")}.
+    - elsif !params[:step]
+      li You have never checked in here before.
+    - unless params[:step]
+      li This is the #{@countries_visited.to_a.count.ordinalize} country you’ve visited.

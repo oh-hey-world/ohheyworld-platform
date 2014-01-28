@@ -1,0 +1,78 @@
+- community_status = (@travel_profiles.count) ? (@selected_user) ? 'active' : '' : 'disabled'
+- ohw_status = (@user_city) ? (@selected_user) ? '' : 'active' : 'disabled'
+.container.container--padded.container--push-footer
+  .m2-m6.t2-t8.d2-d8
+    .btn.btn-group.btn--split.btn--split--big.btn--full.margin-b
+      button[class="btn--split__btn js-segment-tips #{ohw_status}"] OHW
+      button[class="btn--split__btn js-segment-tips js-community #{community_status}"] Community
+    .extra-indent
+      = form_for @city.user_cities.build, url: {action: "city_tips"}, html: { method: 'GET' } do |f|
+        = f.hidden_field :city_id
+        header.clearfix
+          h1.gamma.text-center
+            - if @user_city && (@user_city.user_id || (!@user_city.user_id && @user_city_tips.count == 0))
+              - slug = (@user_city.user) ? @user_city.user.slug : nil
+              span #{@city.name} tips from
+              = f.select :user_id, options_from_collection_for_select(@users, 'slug', 'user_name', (params[:user_id]) ? params[:user_id] : slug), {}, {class: 'delta margin-ls js-user-city-tip-select'}
+            - unless @selected_user
+              | #{@city.name} tips for a
+              - if @travel_profiles_for_select && @travel_profiles_for_select.count > 0
+                = select_tag :travel_profile, options_for_select(@travel_profiles_for_select, @first_profile), {prompt: "---", class: "js-travel-profile"}
+          - if @selected_user
+            - if @user_city
+              .tip-cred.media.media--stacked
+                = link_to(profile_user_path(@selected_user), class: "") do
+                  figure class="friend-img media__img tip-cred__img margin-rs"
+                    img src="#{@selected_user.profile_picture_url('?width=180&height=180')}"
+                .media__body
+                  h2.delta.tight #{@selected_user.user_name}
+                  .tip-cred__interests
+                    strong Interests:
+                    = render partial: 'tags_list', locals: {tags: @user_city.tags}
+                  .tip-cred__expertise
+                    strong Expertise:
+                    - if @user_city.expertise
+                      - @user_city.expertise.each do |expertise|
+                        | #{expertise}
+              /= @user_city.summary
+                    /= render partial: 'tags_list', locals: {tags: @user_city.expertise}
+          - else
+            - if @user_city
+              .tip-cred.media.media--stacked
+                figure class="friend-img media__img tip-cred__img margin-rs"
+                  img src="/assets/logo_square.jpg"
+                .media__body
+                  h2.delta.tight Oh Hey World
+                  .tip-cred__interests
+                    span These tips are curated by the Oh Hey World staff.
+                    /= render partial: 'tags_list', locals: {tags: @user_city.tags}
+              /= @user_city.summary
+          - if current_user && current_user.is_allowed_content_creation? && @user_city
+            = link_to 'Edit', edit_user_city_path(@user_city)
+                
+      ul
+        - if @grouped_tips
+          - @grouped_tips.each do |key, user_city_tips|
+            = key.capitalize
+            - user_city_tips.each do |user_city_tip|
+              li.media.news-item.tip-item
+                .media__body.tip-item__body
+                 = user_city_tip.tip
+                 - if !user_city_tip.link_name.blank? && !user_city_tip.link_value.blank?
+                  span.tip-item__link  
+                    |  (
+                    = link_to user_city_tip.link_name, user_city_tip.link_value
+                    | )
+                .text-right    
+                  = form_for user_city_tip, url: {controller: 'user_city_tips', action: "like_city_tip", id: user_city_tip.id}, html: {class: 'js-tip-like-form'}, remote: true do |f|
+                    = f.hidden_field :id
+                    .news-item__date
+                      .float-left #{user_city_tip.updated_at.strftime("%B %d, %Y")}
+                      - if (user_city_tip.tags.count > 0)
+                        .float-left &nbsp; Tags: #{user_city_tip.tag_list}
+                      = button_tag(:remote => true, :class => "btn btn--small btn--three") do
+                        .js-tip-like.inline-block #{user_city_tip.likes.size}
+                        span &nbsp;
+                        span.icon--tight aria-hidden="true" data-icon="&#xe014;"
+                      - if current_user && current_user.is_allowed_content_creation?
+                        = link_to 'Edit', edit_user_city_tip_path(user_city_tip)

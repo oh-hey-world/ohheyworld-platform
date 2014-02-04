@@ -1,13 +1,28 @@
 <a href="http://www.ohheyworld.com/">![Logo](http://blog.ohheyworld.com/wp-content/uploads/2013/04/logo_transparent_no_shad.png)</a>
 
-Oh Hey World is a location sharing platform allowing you to share your location with the people who matter. It has the potential to serve as the beginning of <a href="http://www.travelstartups.co/the-starting-point-to-real-time-travel-advice-a-location-based-content-delivery-platform/">a travel content delivery network</a>.
+Oh Hey World is a location sharing platform allowing you to share your location with the people who matter. 
 
-Possible uses...
-- a hotel that wants to create their own branded arrival app
-- a tour company wanting to give their customers a seamless arrival experience that connects them with others attending their tour
-- a travel startup who has their own destination specific content to display to users upon arrival or in a search scenario
-- a travel startup wanting to capture data for various cities around the globe. for instance, I'd love to see an app that enables people to log wifi speeds for various cities.
-- a travel concierge app for private groups (see <a href="http://geekestateblog.com/absurd-idea-real-estate-franchises/">this post</a>)
+## Vision
+
+We think of Oh Hey World an open-source location sharing platform that acts as a free, flexible, fundamental building block for travel startups of any size. Whether you are just creating a content site for one country, or a full blown venture funded startup, there is something here for you.
+
+Oh Hey World is: 
+
+- A **user trust system** that grants users the ability to see mutual friends and interests of others.
+
+- A **contemporary, robust technology stack**, free of legacy PHP and MySQL constraints.
+
+Our goal is to **foster an active community of contributors**, all of whom commit to free, simple, pleasant to use location sharing software that can thrive in an Internet age where location sharing is fragmented across dozens and dozens of apps, websites, and phones.
+
+Oh Hey World has the potential to serve as the beginning of <a href="http://www.travelstartups.co/the-starting-point-to-real-time-travel-advice-a-location-based-content-delivery-platform/">a travel content delivery network</a>.
+
+## Possible uses
+
+1. a hotel that wants to create their own branded arrival app
+2. a tour company wanting to give their customers a seamless arrival experience that connects them with others attending their tour
+3. a travel startup who has their own destination specific content to display to users upon arrival or in a search scenario
+4. a travel startup wanting to capture data for various cities around the globe. for instance, I'd love to see an app that enables people to log wifi speeds for various cities.
+5. a travel concierge app for private groups (see <a href="http://geekestateblog.com/absurd-idea-real-estate-franchises/">this post</a>)
 
 ## Getting Started
 
@@ -20,6 +35,8 @@ Possible uses...
 Location sharing - Foursquare at the city level. Share your location with the people who matter with one click.
 
 Example:
+
+1. [**Seattle check-in**](https://www.evernote.com/shard/s254/sh/d52e45f5-9cfd-4505-8886-bf8fd2081766/49416590d0fa42543620e6649b513e59/deep/0/Screenshot%202/3/14%2010:11%20PM.png)
 
 "Welcome Kits" - The cliff notes version of TripAdvisor. Enable travelers to find city-specific tips and advice from individuals or curated per travel profile.
 
@@ -58,18 +75,6 @@ Inputs:
 Outputs
 
 1. [**The OHW WordPress Plugin**](https://github.com/oh-hey-world/wordpress-plugin)
-
-## Vision
-
-We think of Oh Hey World an open-source location sharing platform that acts as a free, flexible, fundamental building block for travel startups of any size. Whether you are just creating a content site for one country, or a full blown venture funded startup, there is something here for you.
-
-Oh Hey World is: 
-
-- A **user trust system** that grants users the ability to see mutual friends and interests of others.
-
-- A **contemporary, robust technology stack**, free of legacy PHP and MySQL constraints.
-
-Our goal is to **foster an active community of contributors**, all of whom commit to free, simple, pleasant to use online discussion software that can thrive in an Internet age dominated by micro-blogging and diminishing attention spans. Internet discussion belongs to everyone, not just huge corporate websites.
 
 ## Built With
 

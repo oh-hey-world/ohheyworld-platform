@@ -1,6 +1,6 @@
 <a href="http://www.ohheyworld.com/">![Logo](http://blog.ohheyworld.com/wp-content/uploads/2013/04/logo_transparent_no_shad.png)</a>
 
-Oh Hey World is a travel platform allowing you to share your location with the people who matter. It has the potential to serve as the beginning of <a href="http://www.travelstartups.co/the-starting-point-to-real-time-travel-advice-a-location-based-content-delivery-platform/">a travel content delivery network</a>.
+Oh Hey World is a location sharing platform allowing you to share your location with the people who matter. It has the potential to serve as the beginning of <a href="http://www.travelstartups.co/the-starting-point-to-real-time-travel-advice-a-location-based-content-delivery-platform/">a travel content delivery network</a>.
 
 Possible uses...
 - a hotel that wants to create their own branded arrival app
@@ -28,14 +28,15 @@ Examples:
 1. [**Seattle, WA, USA**](http://www.ohheyworld.com/city_tips/seattle-washington-united-states)
 2. [**Ubud, Bali, Indonesia**](http://www.ohheyworld.com/city_tips/ubud-bali-indonesia)
 
-Location Aware Communities - a member directory focused on helping you find people nearby.
+Location Aware Communities - a member directory focused on discovery of other community members nearby.
 
 Examples:
 
-1. [**Kiva**](http://www.ohheyworld.com/communities/kiva)
+1. [**Sigma Phi Epsilon**](http://www.ohheyworld.com/communities/sigma-phi-epsilon)
 2. [**Impact HUB**](http://www.ohheyworld.com/communities/impact-hub)
-2. [**Geek Estate**](http://www.ohheyworld.com/communities/geek-estate)
-3. [**TravelStartups**](http://www.ohheyworld.com/communities/travel-startups-co)
+3. [**Geek Estate**](http://www.ohheyworld.com/communities/geek-estate)
+4. [**Kiva**](http://www.ohheyworld.com/communities/kiva)
+5. [**TravelStartups**](http://www.ohheyworld.com/communities/travel-startups-co)
 
 Location Aware Tag Result Pages - sort matching tags based on proximity in the physical world (based on OHW check-in locations)
 
@@ -46,12 +47,21 @@ Examples:
 
 ## Connected Services
 
+Inputs:
+
 1. [**The OHW iOS app**](https://github.com/oh-hey-world/ios)
-2. [**The OHW WordPress Plugin**](https://github.com/oh-hey-world/wordpress-plugin)
+2. [**Android app - needed**]
+4. [**Windows app - needed**]
+5. [**Automatic check-ins from Foursquare - needed**]
+6. [**Automatic check-ins from Facebook - needed**]
+
+Outputs
+
+1. [**The OHW WordPress Plugin**](https://github.com/oh-hey-world/wordpress-plugin)
 
 ## Vision
 
-We think of Oh Hey World an open-source travel platform that acts as a free, flexible, fundamental building block for travel startups of any size, tiny to huge. Whether you are just creating a content site for one country, or a full blown venture funded startup, there is something here for yo
+We think of Oh Hey World an open-source location sharing platform that acts as a free, flexible, fundamental building block for travel startups of any size. Whether you are just creating a content site for one country, or a full blown venture funded startup, there is something here for you.
 
 Oh Hey World is: 
 

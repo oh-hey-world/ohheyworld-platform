@@ -4,6 +4,25 @@ Oh Hey World is a location sharing platform allowing you to share your location 
 
 ## Vision
 
+Imagine a travel experience like the following...
+
+I arrive in a Chiang Mai on a Wednesday morning. Turn on my phone, and am greeted with a push notification, “You have 6 personalized gems waiting…” I click.
+
+- I see a promotion for 20% off ZIP lining with Flight of the Gibbon (which is an awesome day trip I went on last year). I book it with one click.
+- A great photo of a pagoda at night.
+- A tip from a local food junky who lives in Chiang Mai to visit the Mrs Pa’s Smoothies at Chiang Mai gate. Directions are one click away.
+- A recommendation that Anoma is a great, quiet place to stay once, with superb wifi.
+- Tomorrow (Thursday) is trivia night at the UN Pub.
+- Punspace is the co-working spot where geeks work during the day.
+
+Ok, awesome. But I have a question, “where is the best place to get decent American food”? (I wouldn’t ask that given Thai is my favorite food, but I know many would) No problem, there is a prompt to type my question in, knowing I’ll get a response from a trusted human within minutes. Oops, one more question. “Where can I get a haircut near Chiang Mai gate?” Boom, an answer hits my phone a few minutes later, with directions from my hotel one click away and a quick recommendation to take a Songthaew for 20 baht instead of a cab for 100.
+
+All information is personalized, based on my likes, dislikes, and past travel habits. No spam. Everything is vetted and curated. This arrival experience exists for every city in the world.
+
+So, **how do we get there**?
+
+A community of like minded travel techies who believe in more connected and socially conscious travel experiences -- all of whom have the overarching goal of getting more people to explore the world in person rather than just from their computer screen & television screen. Those who have traveled extensively know that travel leads to a better, more balanced perspective on the world.
+
 We think of Oh Hey World an open-source location sharing platform that acts as a free, flexible, fundamental building block for travel startups of any size. Whether you are just creating a content site for one country, or a full blown venture funded startup, there is something here for you.
 
 Oh Hey World is: 
@@ -23,6 +42,7 @@ Oh Hey World has the potential to serve as the beginning of <a href="http://www.
 3. a travel startup who has their own destination specific content to display to users upon arrival or in a search scenario
 4. a travel startup wanting to capture data for various cities around the globe. for instance, I'd love to see an app that enables people to log wifi speeds for various cities.
 5. a travel concierge app for private groups (see <a href="http://geekestateblog.com/absurd-idea-real-estate-franchises/">this post</a>)
+6. A feedreader geared around location to <a href="http://www.tnooz.com/article/travel-bloggers-monetize-knowledge">help travel bloggers monetize their travel knowledge</a> (perhaps teamed with <a href="https://github.com/cloudspace/iOS-EasyReader">iOS Easy Reader</a>)
 
 ## Getting Started
 

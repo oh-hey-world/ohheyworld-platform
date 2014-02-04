@@ -23,6 +23,8 @@ So, **how do we get there**?
 
 A community of like minded travel techies who believe in more connected and socially conscious travel experiences -- all of whom have the overarching goal of getting more people to explore the world in person rather than just from their computer screen & television screen. Those who have traveled extensively know that travel leads to a better, more balanced perspective on the world.
 
+## What It Is
+
 We think of Oh Hey World an open-source location sharing platform that acts as a free, flexible, fundamental building block for travel startups of any size. Whether you are just creating a content site for one country, or a full blown venture funded startup, there is something here for you.
 
 Oh Hey World is: 

@@ -21,7 +21,7 @@ All information is personalized, based on my likes, dislikes, and past travel ha
 
 So, **how do we get there**?
 
-A community of like minded travel techies who believe in more connected and socially conscious travel experiences -- all of whom have the overarching goal of getting more people to explore the world in person rather than just from their computer screen & television screen. Those who have traveled extensively know that travel leads to a better, more balanced perspective on the world.
+A community of like minded travel technologists who believe in the power of connected and socially conscious travel experiences -- all of whom have the overarching goal of getting more people to explore the world with their own two eyes rather than just from their computer & television screens. Those who have traveled extensively know that travel leads to a better, more balanced perspective on the world.
 
 ## What It Is
 

@@ -48,13 +48,13 @@ Web::Application.configure do
 end
 
 BASE_URL = "localhost:3000"
-FACEBOOK_KEY = '208943589120128'
-FACEBOOK_SECRET = '64ac629b302425f5468e067cafe5ae8c'
-TWITTER_CONSUMER_KEY = 'mMTRvMDNhw4bJDKnrJmA'
-TWITTER_CONSUMER_SECRET = 'PA9AeCpO31ialPVVyAG1q9ixU4h04ZITM0Evcuu7Ur4'
-BING_GEOCODER_KEY = 'AuFOCnKRkw22FU0GD_fvqudUo7iW5iX6-o6ZdWUt-ce3cb9Xe0w4xwpVAjQNYFPB'
+FACEBOOK_KEY = 'xxxxx'
+FACEBOOK_SECRET = 'xxxxx'
+TWITTER_CONSUMER_KEY = 'xxxxx'
+TWITTER_CONSUMER_SECRET = 'xxxxx'
+BING_GEOCODER_KEY = 'xxxxx'
 EMAIL_CHECKIN_USER = 'dev2@ohheyworld.com'
-EMAIL_CHECKIN_PASSWORD = 'B?egnCMs'
+EMAIL_CHECKIN_PASSWORD = 'xxxxx'
 
 Paperclip.options[:command_path] = '/usr/local/bin/'
 Rails.application.routes.default_url_options[:host] = BASE_URL

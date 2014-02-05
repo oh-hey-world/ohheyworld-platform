@@ -80,12 +80,12 @@ Web::Application.config.middleware.use ExceptionNotifier,
   :exception_recipients => %w{eric.roland@gmail.com}
 
 BASE_URL = "www.ohheyworld.com"
-FACEBOOK_KEY = '375630372502601'
-FACEBOOK_SECRET = 'd201deba5ef20aa802193177e2e7882d'
-TWITTER_CONSUMER_KEY = 'wGOPa42H5FKNQ8yk8YRug'
-TWITTER_CONSUMER_SECRET = 'ceAdbSHzmshUYoHbGp3x1o8uSH2OVvOP5BYh8yKPFI'
-BING_GEOCODER_KEY = 'Aq9of2wVcJNg9MCbe9c_4DcZDVNI0bByLUs9clsJkqwJSLQRNq42w9JtZTB0ny0B'
+FACEBOOK_KEY = 'xxxxx'
+FACEBOOK_SECRET = 'xxxxx'
+TWITTER_CONSUMER_KEY = 'xxxxx'
+TWITTER_CONSUMER_SECRET = 'xxxxx'
+BING_GEOCODER_KEY = 'xxxxx'
 EMAIL_CHECKIN_USER = 'checkin@ohheyworld.com'
-EMAIL_CHECKIN_PASSWORD = '9BgSh3!?'
+EMAIL_CHECKIN_PASSWORD = 'xxxxx'
 
 Rails.application.routes.default_url_options[:host] = BASE_URL

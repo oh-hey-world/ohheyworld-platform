@@ -112,12 +112,12 @@ accepts contributions from the public. We'd like you to be a part of that commun
 Before contributing to Oh Hey World, please:
 
 1. Review the [**VISION**](#vision) statement, to confirm that you understand the focus of the project,
-2. Read and sign the [**Electronic Discourse Forums Contribution License Agreement**](http://discourse.org/cla), to confirm you've read and acknowledged the legal aspects of your contributions, and
+2. Read and sign the [**Electronic Discourse Forums Contribution License Agreement**](http://www.ohheyworld.com/cla), to confirm you've read and acknowledged the legal aspects of your contributions, and
 3. Dig into [**CONTRIBUTING.MD**](CONTRIBUTING.md), which houses all of the necessary info to:
    - submit bugs,
    - request new features, and
    - step you through the entire process of preparing your code for a Pull Request.
-4. Not sure what to work on? [**We've got some ideas!**](link)
+4. Not sure what to work on? [**We've got some ideas!**](https://github.com/oh-hey-world/ohheyworld-platform/wiki/Possibilities)
 
 We look forward to building the most amazing travel platform on the planet together.
 

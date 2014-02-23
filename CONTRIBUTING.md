@@ -2,7 +2,7 @@
 
 ## Before You Start
 
-Anyone wishing to contribute to the **[Discourse/Discourse](https://github.com/discourse/discourse)** project **MUST read & sign the [Electronic Oh Hey World Contribution License Agreement](http://www.discourse.org/cla)**. We will not accept any pull requests from users who have not signed the CLA first.
+Anyone wishing to contribute to the **[Oh Hey World](https://github.com/oh-hey-world/ohheyworld-platform/)** project **MUST read & sign the [Electronic Oh Hey World Contribution License Agreement](http://www.ohheyworld.com/cla)**. We will not accept any pull requests from users who have not signed the CLA first.
 
 ## Reporting Bugs
 
@@ -30,7 +30,7 @@ Anyone wishing to contribute to the **[Discourse/Discourse](https://github.com/d
 
 1. Clone the Repo:
 
-        git clone git://github.com/discourse/discourse.git  
+        git clone git://github.com/oh-hey-world/ohheyworld-platform.git  
 
 2. Create a new Branch:
  

@@ -10,11 +10,11 @@ Anyone wishing to contribute to the **[Oh Hey World](https://github.com/oh-hey-w
 
 2. Search for similar issues on the [Discourse meta forum][m]; it may already be an identified problem.
 
-3. Make sure you can reproduce your problem on our sandbox at [try.discourse.org](http://try.discourse.org)
+3. Make sure you can reproduce your problem at [www.ohheyworld.com](http://www.ohheyworld.com)
 
 4. If this is a bug or problem that **requires any kind of extended discussion -- open [a topic on meta][m] about it**. Do *not* open a bug on GitHub.
 
-5. If this is a bug or problem that is clear, simple, and is unlikely to require *any* discussion -- it is OK to open an [issue on GitHub](https://github.com/discourse/discourse/issues) with a reproduction of the bug including workflows, screenshots, or links to examples on [try.discourse.org](http://try.discourse.org). If possible, submit a Pull Request with a failing test. If you'd rather take matters into your own hands, fix the bug yourself (jump down to the "Contributing (Step-by-step)" section).
+5. If this is a bug or problem that is clear, simple, and is unlikely to require *any* discussion -- it is OK to open an [issue on GitHub](https://github.com/oh-hey-world/ohheyworld-platform/issues) with a reproduction of the bug including workflows, screenshots, or links to examples on [www.ohheyworld.com](http://www.ohheyworld.com). If possible, submit a Pull Request with a failing test. If you'd rather take matters into your own hands, fix the bug yourself (jump down to the "Contributing (Step-by-step)" section).
 
 6. When the bug is fixed, we will do our best to update the Discourse topic or GitHub issue with a resolution.
 

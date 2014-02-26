@@ -75,6 +75,12 @@ Examples:
 1. [**Startup Abroad 2012**](http://www.ohheyworld.com/users/tags/startup%20abroad%202012)
 2. [**Microfinance**](http://www.ohheyworld.com/users/tags/microfinance) 
 
+My Network on a Map - show your FB friends, on a map (feature still need work)
+
+Examples:
+
+1. [**Drew's Example**](http://www.ohheyworld.com/drewmeyers/network)
+
 ## Connected Services
 
 Inputs:

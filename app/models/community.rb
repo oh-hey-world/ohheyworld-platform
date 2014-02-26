@@ -18,7 +18,7 @@
 #
 
 class Community < ActiveRecord::Base
-  attr_accessible :name, :description, :question, :brand, :concerns, :concern_list, :tagline, :custom_field_label
+  attr_accessible :name, :description, :question, :brand, :concerns, :concern_list, :tagline, :custom_field_label, :display_love_question
   attr_accessor :concern_list
 
   acts_as_taggable

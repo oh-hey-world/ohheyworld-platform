@@ -1,10 +1,13 @@
 p.delta.margin-t Discover and connect with others nearby who share your interest in #{@community.name}.
 div
   = form_for @member, url: community_member_path, html: { class: ""} do |f|
-    = f.label "tagline" do
-    	| Why do you love #{@community.name}? 
-    	span.zeta (required)
-    = f.text_area :tagline, rows: 5, class: "input-text margin-b"
+    - unless @community.display_love_question == false
+      = f.label "tagline" do
+      	| What do you like most about #{@community.name}? 
+      	span.zeta (required)
+
+      = f.text_area :tagline, rows: 5, class: "input-text margin-b"
+    end
 
     = f.label "answer" do
     	| #{@community.question} 

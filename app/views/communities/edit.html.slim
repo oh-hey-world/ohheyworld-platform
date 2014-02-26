@@ -15,6 +15,9 @@
     = f.label :question
     = f.text_field :question
 
+    = f.label :display_love_question, "Display the 'Why Do You Love #{@community.name}' question?"
+    = f.select :display_love_question, {"Yes" => true, "No" => false}
+
     = f.label :brand
     = f.file_field :brand
 

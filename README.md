@@ -37,15 +37,6 @@ Our goal is to **foster an active community of contributors**, all of whom commi
 
 Oh Hey World has the potential to serve as the beginning of <a href="http://www.travelstartups.co/the-starting-point-to-real-time-travel-advice-a-location-based-content-delivery-platform/">a travel content delivery network</a>.
 
-## Possible uses
-
-1. a hotel that wants to create their own branded arrival app
-2. a tour company wanting to give their customers a seamless arrival experience that connects them with others attending their tour
-3. a travel startup who has their own destination specific content to display to users upon arrival or in a search scenario
-4. a travel startup wanting to capture data for various cities around the globe. for instance, I'd love to see an app that enables people to log wifi speeds for various cities.
-5. a travel concierge app for private groups (see <a href="http://geekestateblog.com/absurd-idea-real-estate-franchises/">this post</a>)
-6. A feedreader geared around location to <a href="http://www.tnooz.com/article/travel-bloggers-monetize-knowledge">help travel bloggers monetize their travel knowledge</a> (perhaps teamed with <a href="https://github.com/cloudspace/iOS-EasyReader">iOS Easy Reader</a>)
-
 ## Getting Started
 
 1. Visit <a href="http://www.ohheyworld.com">Oh Hey World</a>

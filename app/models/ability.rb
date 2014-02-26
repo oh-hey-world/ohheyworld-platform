@@ -8,6 +8,7 @@ class Ability
     elsif user.is?("standard")
       can :manage, [User, UserLocation, Location, Preference, UserCountry, UserLanguage, UserProvider, ProviderFriend, UserProviderFriend]
       can :read, :all
+      cannot :edit, Community
     else
       can :read, :all
     end

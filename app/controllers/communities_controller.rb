@@ -30,6 +30,13 @@ class CommunitiesController < ApplicationController
   end
 
   def edit
+    # Only admins can edit. Doing this in ability.rb didn't work for some reason
+    if current_user.roles.include?("admin")
+    else
+      redirect_to root_path
+      flash[:alert] = "Only admins can update communities"
+    end
+    # End only admins can edit
   end
 
   def update

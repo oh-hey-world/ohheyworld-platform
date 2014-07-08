@@ -95,6 +95,10 @@ Outputs
 
 1. [**The OHW WordPress Plugin**](https://github.com/oh-hey-world/wordpress-plugin)
 
+##Possibilities
+
+See this wiki page: (https://github.com/oh-hey-world/ohheyworld-platform/wiki/Possibilities)
+
 ## Built With
 
 Oh Hey World is built from the following open source components:

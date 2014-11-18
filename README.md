@@ -122,6 +122,9 @@ Before contributing to Oh Hey World, please:
 
 We look forward to building the most amazing travel platform on the planet together.
 
+##Horizon - hospitality exchange
+The original Oh Hey World team is now building our second travel product, [Horizon](http://www.horizonapp.co) using the learnings gained from Oh Hey World.
+
 ## Copyright / License
 
 Copyright 2014 Oh Hey World, Inc.

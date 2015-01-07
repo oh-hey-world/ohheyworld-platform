@@ -2,6 +2,8 @@
 
 Oh Hey World is a location sharing platform allowing you to share your location with the people who matter. 
 
+Note the Oh Hey World team is now working on <a href="http://www.horizonapp.co">Horizon, which facilitates private hospitality exchanges for existing communities</a>.
+
 ## Vision
 
 Imagine a travel experience like the following...

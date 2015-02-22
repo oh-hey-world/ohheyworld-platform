@@ -6,8 +6,8 @@ require_relative File.join('../lib/core_ext', 'rails_extensions')
 Web::Application.initialize!
 
 ActionMailer::Base.smtp_settings = {
-  :user_name => "ohheyworld",
-  :password => "W0rldTr@veler",
+  :user_name => "xxxxx",
+  :password => "xxxxx",
   :domain => "ohheyworld.com",
   :address => "smtp.sendgrid.net",
   :port => 587,
